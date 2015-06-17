@@ -1,0 +1,47 @@
+{
+  "intents": [
+    {
+      "slots": [{
+          "name": "item",
+          "type": "LITERAL"
+        },{
+          "name": "quantity",
+          "type": "NUMBER"
+        }],
+      "intent": "ADD"
+    },
+    {
+      "slots": [{
+          "name": "item",
+          "type": "LITERAL"
+        }],
+      "intent": "QUERY"
+    },
+    {
+      "slots": [],
+      "intent": "QUERYALL"
+    },
+    {
+      "slots": [{
+          "name": "item",
+          "type": "LITERAL"
+        },{
+          "name": "quantity",
+          "type": "NUMBER"
+        }],
+      "intent": "DELETE"
+    },
+    {
+      "slots": [],
+      "intent": "DELETEALL"
+    },
+    {
+      "slots": [],
+      "intent": "SYNCHRONIZE"
+    },
+    {
+      "slots": [],
+      "intent": "SEND"
+    }
+ ]
+}

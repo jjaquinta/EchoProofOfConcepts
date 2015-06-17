@@ -45,6 +45,16 @@
 			<locationURI>PROJECT_LOC/src/jo/cc/slu/ColossalCave.json</locationURI>
 		</link>
 		<link>
+			<name>WebContent/data/gl/GroceryList.baf</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/src/jo/gl/slu/GroceryList.baf</locationURI>
+		</link>
+		<link>
+			<name>WebContent/data/gl/GroceryList.json</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/src/jo/gl/slu/GroceryList.json</locationURI>
+		</link>
+		<link>
 			<name>WebContent/data/hello/IntentSchema.json</name>
 			<type>1</type>
 			<locationURI>PROJECT_LOC/src/helloworld/slu/IntentSchema.json</locationURI>
