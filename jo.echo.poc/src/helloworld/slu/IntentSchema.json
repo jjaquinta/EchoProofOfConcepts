@@ -1,0 +1,17 @@
+{
+  "intents": [
+    {
+      "intent": "HelloIntent",
+      "slots": []
+    },
+    {
+      "intent": "HelloUserIntent",
+      "slots": [
+        {
+          "name": "UserName",
+          "type": "LITERAL"
+        }
+      ]
+    }
+  ]
+}

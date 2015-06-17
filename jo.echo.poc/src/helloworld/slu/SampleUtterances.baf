@@ -1,0 +1,3 @@
+HelloIntent  say hello
+HelloUserIntent  say hello to {steve|UserName}
+HelloUserIntent  say hello to {samantha powell|UserName}
