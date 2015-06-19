@@ -101,6 +101,8 @@ public class GroceryAppLogic
         }
         if (items.size() == 0)
             return "You don't have anything on your list. Say 'add apple' to add an apple to your list.";
+        if (items.size() == 1)
+            return "You have "+items.get(0)+".";
         StringBuffer sb = new StringBuffer();
         sb.append("You have ");
         for (int idx = 0; idx < items.size(); idx++)
