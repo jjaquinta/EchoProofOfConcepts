@@ -1,0 +1,17 @@
+ADD	I need more {apple|item}
+ADD	I need more {asparagus|item}
+ADD	I need more {avocado|item}
+ADD	I need more {zucchini|item}
+ADD	I need {one|quantity} more {apple|item}
+ADD	I need {one|quantity} more {asparagus|item}
+ADD	I need {one|quantity} more {avocado|item}
+ADD	I need {one|quantity} more {zucchini|item}
+ADD	I need {two|quantity} more {apple|item}
+ADD	I need {two|quantity} more {asparagus|item}
+ADD	I need {two|quantity} more {avocado|item}
+ADD	I need {two|quantity} more {zucchini|item}
+ADD	I need {three|quantity} more {apple|item}
+ADD	I need {three|quantity} more {asparagus|item}
+ADD	I need {three|quantity} more {avocado|item}
+ADD	I need {three|quantity} more {zucchini|item}
+QUERYALL show list

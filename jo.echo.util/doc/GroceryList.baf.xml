@@ -1,0 +1,16 @@
+<baf>
+	<wordList id="item">
+		<word>Apple</word>
+		<word>Asparagus</word>
+		<word>Avocado</word>
+		<word>Zucchini</word>
+	</wordList>
+	<wordList id="quantity">
+		<word>one</word>
+		<word>two</word>
+		<word>three</word>
+	</wordList>
+	<intent>ADD	I need more {<insert id="item" />|item}</intent>
+	<intent>ADD	I need {<insert id="quantity" />|quantity} more {<insert id="item" />|item}</intent>
+	<intent>QUERYALL show list</intent>
+</baf>
