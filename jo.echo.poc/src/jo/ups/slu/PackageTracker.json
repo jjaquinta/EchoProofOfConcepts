@@ -1,0 +1,100 @@
+{
+  "intents": [
+    {
+      "slots": [
+      { "name": "firstDigit", "type": "LITERAL" },
+      { "name": "secondDigit}", "type": "LITERAL" },
+      { "name": "thirdDigit", "type": "LITERAL" },
+      { "name": "fourthDigit", "type": "LITERAL" },
+      { "name": "fifthDigit", "type": "LITERAL" },
+      { "name": "sixthDigit", "type": "LITERAL" },
+      { "name": "seventhDigit", "type": "LITERAL" },
+      { "name": "eighthDigit", "type": "LITERAL" },
+      { "name": "ninthDigit", "type": "LITERAL" },
+      { "name": "tenthDigit", "type": "LITERAL" },
+      { "name": "eleventhDigit", "type": "LITERAL" },
+      { "name": "twelthDigit", "type": "LITERAL" },
+      { "name": "thirteenthDigit", "type": "LITERAL" },
+      { "name": "fourteenthDigit", "type": "LITERAL" },
+      { "name": "fifteenthDigit", "type": "LITERAL" },
+      { "name": "sixteenthDigit", "type": "LITERAL" },
+      { "name": "seventeenthDigit", "type": "LITERAL" },
+      { "name": "eighteenthDigit", "type": "LITERAL" }
+        ],
+      "intent": "TRACKINGNUMBER"
+    },
+    {
+      "slots": [
+      { "name": "firstDigit", "type": "LITERAL" },
+      { "name": "secondDigit", "type": "LITERAL" },
+      { "name": "thirdDigit", "type": "LITERAL" },
+      { "name": "fourthDigit", "type": "LITERAL" },
+      { "name": "fifthDigit", "type": "LITERAL" },
+      { "name": "sixthDigit", "type": "LITERAL" },
+      { "name": "seventhDigit", "type": "LITERAL" },
+      { "name": "eighthDigit", "type": "LITERAL" },
+      { "name": "ninthDigit", "type": "LITERAL" },
+      { "name": "tenthDigit", "type": "LITERAL" },
+      { "name": "eleventhDigit", "type": "LITERAL" },
+      { "name": "twelthDigit", "type": "LITERAL" },
+      { "name": "thirteenthDigit", "type": "LITERAL" },
+      { "name": "fourteenthDigit", "type": "LITERAL" },
+      { "name": "fifteenthDigit", "type": "LITERAL" },
+      { "name": "sixteenthDigit", "type": "LITERAL" },
+      { "name": "seventeenthDigit", "type": "LITERAL" },
+      { "name": "eighteenthDigit", "type": "LITERAL" }
+        ],
+      "intent": "STATUS"
+    },
+    {
+      "slots": [
+      { "name": "firstDigit", "type": "LITERAL" },
+      { "name": "secondDigit", "type": "LITERAL" },
+      { "name": "thirdDigit", "type": "LITERAL" },
+      { "name": "fourthDigit", "type": "LITERAL" },
+      { "name": "fifthDigit", "type": "LITERAL" },
+      { "name": "sixthDigit", "type": "LITERAL" },
+      { "name": "seventhDigit", "type": "LITERAL" },
+      { "name": "eighthDigit", "type": "LITERAL" },
+      { "name": "ninthDigit", "type": "LITERAL" },
+      { "name": "tenthDigit", "type": "LITERAL" },
+      { "name": "eleventhDigit", "type": "LITERAL" },
+      { "name": "twelthDigit", "type": "LITERAL" },
+      { "name": "thirteenthDigit", "type": "LITERAL" },
+      { "name": "fourteenthDigit", "type": "LITERAL" },
+      { "name": "fifteenthDigit", "type": "LITERAL" },
+      { "name": "sixteenthDigit", "type": "LITERAL" },
+      { "name": "seventeenthDigit", "type": "LITERAL" },
+      { "name": "eighteenthDigit", "type": "LITERAL" }
+        ],
+      "intent": "REMOVE"
+    },
+    {
+      "slots": [
+      { "name": "firstDigit", "type": "LITERAL" },
+      { "name": "secondDigit", "type": "LITERAL" },
+      { "name": "thirdDigit", "type": "LITERAL" },
+      { "name": "fourthDigit", "type": "LITERAL" },
+      { "name": "fifthDigit", "type": "LITERAL" },
+      { "name": "sixthDigit", "type": "LITERAL" },
+      { "name": "seventhDigit", "type": "LITERAL" },
+      { "name": "eighthDigit", "type": "LITERAL" },
+      { "name": "ninthDigit", "type": "LITERAL" },
+      { "name": "tenthDigit", "type": "LITERAL" },
+      { "name": "eleventhDigit", "type": "LITERAL" },
+      { "name": "twelthDigit", "type": "LITERAL" },
+      { "name": "thirteenthDigit", "type": "LITERAL" },
+      { "name": "fourteenthDigit", "type": "LITERAL" },
+      { "name": "fifteenthDigit", "type": "LITERAL" },
+      { "name": "sixteenthDigit", "type": "LITERAL" },
+      { "name": "seventeenthDigit", "type": "LITERAL" },
+      { "name": "eighteenthDigit", "type": "LITERAL" }
+        ],
+      "intent": "ADD"
+    },
+    {
+      "slots": [],
+      "intent": "CLEAR"
+    }
+ ]
+}

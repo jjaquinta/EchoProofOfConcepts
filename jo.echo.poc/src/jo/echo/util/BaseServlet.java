@@ -2,6 +2,8 @@ package jo.echo.util;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -27,9 +29,11 @@ public class BaseServlet extends SpeechletServlet
     private Throwable mLastException = null;
     protected String mIntentsFile;
     protected String mUtterancesFile;
+    private static Map<Object, StringBuffer> mLogMessages = new HashMap<Object, StringBuffer>();
     
     public BaseServlet()
     {
+        mLogMessages.put(this, new StringBuffer());
     }
     
     @Override
@@ -56,14 +60,20 @@ public class BaseServlet extends SpeechletServlet
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
     {
+        StringBuffer log = mLogMessages.get(getClass());
         String fetch = req.getParameter("fetch");
         resp.setContentType("text/plain");
         if ("intents".equals(fetch))
             doGetResource(req, resp, mIntentsFile);
         else if ("utterances".equals(fetch))
             doGetResource(req, resp, mUtterancesFile);
-        else if (mLastException != null)
+        else if ((mLastException != null) || ((log != null) && (log.length() > 0)))
         {
+            if ((log != null) && (log.length() > 0))
+            {
+                resp.getWriter().write(log.toString());
+                log.setLength(0);
+            }
             Throwable t = mLastException;
             while (t != null)
             {
@@ -96,5 +106,18 @@ public class BaseServlet extends SpeechletServlet
             resp.getOutputStream().write(ch);
         }
         is.close();
+    }
+    
+    public static void log(Class<?> wrt, String msg)
+    {
+        StringBuffer log = mLogMessages.get(wrt);
+        if (log == null)
+        {
+            log = new StringBuffer();
+            mLogMessages.put(wrt, log);
+        }
+        log.append(msg);
+        log.append("\r\n");
+        System.out.println(msg);
     }
 }
