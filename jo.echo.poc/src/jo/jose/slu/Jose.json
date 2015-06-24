@@ -1,0 +1,45 @@
+{
+  "intents": [
+    {
+      "slots": [{
+          "name": "location",
+          "type": "LITERAL"
+        }],
+      "intent": "LOCATION"
+    },
+    {
+      "slots": [{
+          "name": "location",
+          "type": "LITERAL"
+        }],
+      "intent": "JUMP"
+    },
+    {
+      "slots": [{
+          "name": "lotnum",
+          "type": "LITERAL"
+        }],
+      "intent": "FORSALE"
+    },
+    {
+      "slots": [],
+      "intent": "SPACE"
+    },
+    {
+      "slots": [],
+      "intent": "MONEY"
+    },
+    {
+      "slots": [],
+      "intent": "NEARBY"
+    },
+    {
+      "slots": [],
+      "intent": "DATE"
+    },
+    {
+      "slots": [],
+      "intent": "RESET"
+    }
+ ]
+}

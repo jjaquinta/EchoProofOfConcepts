@@ -1,0 +1,32 @@
+LOCATION	Where am I
+LOCATION	Tell me about {Havelock|location}
+JUMP	jump to {Apaeronsk|location}
+JUMP	go to {Apaeronsk|location}
+JUMP	jump {Apaeronsk|location}
+JUMP	move to {Apaeronsk|location}
+SPACE	How much space do I have
+SPACE	How much more can I carry
+SPACE	How much can I carry
+SPACE	What can I fit in
+SPACE	space
+MONEY	How much money do I have
+MONEY	How much money
+MONEY	bank account
+MONEY	money
+NEARBY	What's nearby
+NEARBY	where can I go
+NEARBY	nearby
+NEARBY	neighborhood
+RESET	reset
+RESET	start over
+DATE	date
+DATE	time
+DATE	what day is it
+DATE	day
+DATE	now
+FORSALE	what's for sale
+FORSALE	tell me about lot number {one|lotnum}
+FORSALE	tell me about {one|lotnum}
+FORSALE	what's on the dock
+FORSALE	dock
+FORSALE	dockside
