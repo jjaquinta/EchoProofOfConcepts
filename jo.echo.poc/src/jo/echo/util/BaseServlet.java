@@ -10,7 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.amazon.speech.Sdk;
+import com.amazon.speech.slu.Slot;
+import com.amazon.speech.speechlet.IntentRequest;
+import com.amazon.speech.speechlet.LaunchRequest;
+import com.amazon.speech.speechlet.Session;
+import com.amazon.speech.speechlet.SessionEndedRequest;
+import com.amazon.speech.speechlet.SessionStartedRequest;
+import com.amazon.speech.speechlet.Speechlet;
+import com.amazon.speech.speechlet.SpeechletException;
+import com.amazon.speech.speechlet.SpeechletResponse;
 import com.amazon.speech.speechlet.servlet.SpeechletServlet;
+import com.amazon.speech.ui.PlainTextOutputSpeech;
 
 public class BaseServlet extends SpeechletServlet
 {
@@ -34,6 +44,21 @@ public class BaseServlet extends SpeechletServlet
     public BaseServlet()
     {
         mLogMessages.put(this, new StringBuffer());
+    }
+    
+    @Override
+    public void setSpeechlet(Speechlet speechlet)
+    {
+        super.setSpeechlet(new SpeechletWrapper(speechlet));
+    }
+
+    @Override
+    public Speechlet getSpeechlet()
+    {
+        Speechlet base = super.getSpeechlet();
+        if (base instanceof SpeechletWrapper)
+            base = ((SpeechletWrapper)base).getBase();
+        return base;
     }
     
     @Override
@@ -120,4 +145,70 @@ public class BaseServlet extends SpeechletServlet
         log.append("\r\n");
         System.out.println(msg);
     }
+    
+    class SpeechletWrapper implements Speechlet {
+        private Speechlet mBase;
+        
+        public SpeechletWrapper(Speechlet base)
+        {
+            mBase = base;
+        }
+        
+        @Override
+        public void onSessionStarted(final SessionStartedRequest request, final Session session)
+                throws SpeechletException {
+            log("onSessionStarted requestId="+request.getRequestId()+", sessionId="+session.getSessionId());
+            mBase.onSessionStarted(request, session);
+        }
+
+        @Override
+        public SpeechletResponse onLaunch(final LaunchRequest request, final Session session)
+                throws SpeechletException {
+            log("onLaunch requestId="+request.getRequestId()+", sessionId="+session.getSessionId());
+            SpeechletResponse response = mBase.onLaunch(request, session);
+            logResponse(response);
+            return response;
+        }
+
+        @Override
+        public SpeechletResponse onIntent(final IntentRequest request, final Session session)
+                throws SpeechletException {
+            log("onIntent requestId="+request.getRequestId()+", sessionId="+session.getSessionId());
+            if (request.getIntent() != null)
+            {
+                StringBuffer sb = new StringBuffer();
+                sb.append(request.getIntent().getName()+":");
+                for (Slot s : request.getIntent().getSlots().values())
+                    sb.append(" "+s.getName()+"="+s.getValue());
+                log(sb.toString());
+            }
+            SpeechletResponse response = mBase.onIntent(request, session);
+            logResponse(response);
+            return response;
+        }
+
+        @Override
+        public void onSessionEnded(final SessionEndedRequest request, final Session session)
+                throws SpeechletException {
+            log("onSessionEnded requestId="+request.getRequestId()+", sessionId="+session.getSessionId());
+            mBase.onSessionEnded(request, session);
+        }
+
+        private void logResponse(SpeechletResponse response)
+        {
+            if (response.getOutputSpeech() instanceof PlainTextOutputSpeech)
+                log(((PlainTextOutputSpeech)response.getOutputSpeech()).getText());
+        }
+        
+        public Speechlet getBase()
+        {
+            return mBase;
+        }
+
+        public void setBase(Speechlet base)
+        {
+            mBase = base;
+        }
+    }
+
 }

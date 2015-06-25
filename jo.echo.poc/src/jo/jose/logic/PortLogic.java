@@ -2,50 +2,52 @@ package jo.jose.logic;
 
 import java.io.IOException;
 
-import org.json.simple.JSONObject;
+import jo.d4w.data.PopulatedObjectBean;
+import jo.d4w.web.data.PortBean;
+import jo.d4w.web.logic.URILogic;
 
 public class PortLogic
 {
-    public static JSONObject lookup(String subURI) throws IOException
+    public static PortBean lookup(String subURI) throws IOException
     {
-        return LookupLogic.query(subURI);
+        return (PortBean)URILogic.getFromURI(subURI);
     }
 
-    public static String getName(JSONObject port)
+    public static String getName(PortBean port)
     {
-        return (String)port.get("name");
+        return port.getName();
     }
     
-    public static long getPopulation(JSONObject port)
+    public static long getPopulation(PortBean port)
     {
-        JSONObject popStats = getPopStats(port);
-        return ((Number)popStats.get("population")).longValue();
+        PopulatedObjectBean popStats = getPopStats(port);
+        return popStats.getPopulation();
     }
     
-    public static double getMaterialProductivity(JSONObject port)
+    public static double getMaterialProductivity(PortBean port)
     {
-        JSONObject popStats = getPopStats(port);
-        return ((Number)popStats.get("materialProductivity")).doubleValue();
+        PopulatedObjectBean popStats = getPopStats(port);
+        return popStats.getMaterialProductivity();
     }
     
-    public static double getAgriculturalProductivity(JSONObject port)
+    public static double getAgriculturalProductivity(PortBean port)
     {
-        JSONObject popStats = getPopStats(port);
-        return ((Number)popStats.get("agriculturalProductivity")).doubleValue();
+        PopulatedObjectBean popStats = getPopStats(port);
+        return popStats.getAgriculturalProductivity();
     }
     
-    public static double getEnergyProductivity(JSONObject port)
+    public static double getEnergyProductivity(PortBean port)
     {
-        JSONObject popStats = getPopStats(port);
-        return ((Number)popStats.get("energyProductivity")).doubleValue();
+        PopulatedObjectBean popStats = getPopStats(port);
+        return popStats.getEnergyProductivity();
     }
     
-    private static JSONObject getPopStats(JSONObject port)
+    private static PopulatedObjectBean getPopStats(PortBean port)
     {
-        return (JSONObject)port.get("popStats");
+        return port.getPopStats();
     }
 
-    public static String getPopulationDescription(JSONObject port)
+    public static String getPopulationDescription(PortBean port)
     {
         long pop = getPopulation(port);
         if (pop >= 1000000000)
@@ -57,13 +59,13 @@ public class PortLogic
         return Long.toString(pop);
     }
 
-    public static String getTechTierDescription(JSONObject port)
+    public static String getTechTierDescription(PortBean port)
     {
-        JSONObject popStats = getPopStats(port);
-        return (String)popStats.get("techTierDesc");
+        PopulatedObjectBean popStats = getPopStats(port);
+        return PopulatedObjectBean.TECH_DESCRIPTION[popStats.getTechTier()];
     }
 
-    public static String getProductionFocus(JSONObject port)
+    public static String getProductionFocus(PortBean port)
     {
         double material = getMaterialProductivity(port);
         double agricultural = getAgriculturalProductivity(port);
@@ -77,22 +79,22 @@ public class PortLogic
         return "diverse resources";
     }
 
-    public static String distanceDescription(JSONObject p1, JSONObject p2)
+    public static String distanceDescription(PortBean p1, PortBean p2)
     {
-        double x1 = ((Number)p1.get("x")).doubleValue();
-        double y1 = ((Number)p1.get("y")).doubleValue();
-        double z1 = ((Number)p1.get("z")).doubleValue();
-        double x2 = ((Number)p2.get("x")).doubleValue();
-        double y2 = ((Number)p2.get("y")).doubleValue();
-        double z2 = ((Number)p2.get("z")).doubleValue();
+        double x1 = p1.getX();
+        double y1 = p1.getY();
+        double z1 = p1.getZ();
+        double x2 = p2.getX();
+        double y2 = p2.getY();
+        double z2 = p2.getZ();
         double d = Math.sqrt((x1 - x2)*(x1 - x2) + (y1 - y2)*(y1 - y2) + (z1 - z2)*(z1 - z2));
         d /= 3.26;
         String num = String.format("%.1f parsecs", d);
         return num;
     }
 
-    public static String getID(JSONObject port)
+    public static String getID(PortBean port)
     {
-        return (String)port.get("id");
+        return port.getURI();
     }
 }

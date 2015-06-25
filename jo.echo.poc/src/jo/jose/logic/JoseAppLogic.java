@@ -1,8 +1,13 @@
 package jo.jose.logic;
 
 import java.io.IOException;
+import java.util.List;
 
-import org.json.simple.JSONArray;
+import jo.d4w.web.data.DockCargoBean;
+import jo.d4w.web.data.OnDockBean;
+import jo.d4w.web.data.PortBean;
+import jo.d4w.web.data.PortsBean;
+
 import org.json.simple.JSONObject;
 
 import com.amazon.speech.slu.Intent;
@@ -61,6 +66,14 @@ public class JoseAppLogic
                 response = doDate(intent, user);
             else if (verb.equals("FORSALE"))
                 response = doForSale(intent, user);
+            else if (verb.equals("BUY"))
+                response = doBuy(intent, user);
+            else if (verb.equals("HOLD"))
+                response = doHold(intent, user);
+            else if (verb.equals("PRICE"))
+                response = doPrice(intent, user);
+            else if (verb.equals("SELL"))
+                response = doSell(intent, user);
         }
         return buildSpeechletResponse(response);
     }
@@ -85,13 +98,12 @@ public class JoseAppLogic
     }
     private static String doNearby(Intent intent, JSONObject user) throws IOException
     {
-        JSONObject ports = PortsLogic.getNearbyPorts(UserLogic.getLocation(user), UserLogic.getJump(user));
+        PortsBean ports = PortsLogic.getNearbyPorts(UserLogic.getLocation(user), UserLogic.getJump(user));
         String atName = UserLogic.getLocationName(user);
-        JSONObject at = PortsLogic.findPort(ports, atName);
+        PortBean at = PortsLogic.findPort(ports, atName);
         StringBuffer sb = new StringBuffer();
-        for (Object p : PortsLogic.getPorts(ports))
+        for (PortBean port : PortsLogic.getPorts(ports))
         {
-            JSONObject port = (JSONObject)p;
             String pName = PortLogic.getName(port);
             if (pName.equals(atName))
                 continue;
@@ -102,7 +114,7 @@ public class JoseAppLogic
     }
     private static String doLocation(Intent intent, JSONObject user) throws IOException
     {
-        JSONObject port = resolveLocation(intent, user);
+        PortBean port = resolveLocation(intent, user);
         if (port == null)
             if (intent.getSlot("location") != null)
                 return "I'm not quite sure where you mean.";
@@ -118,7 +130,7 @@ public class JoseAppLogic
     }    
     private static String doJump(Intent intent, JSONObject user) throws IOException
     {
-        JSONObject port = resolveLocation(intent, user);
+        PortBean port = resolveLocation(intent, user);
         if (port == null)
             if (intent.getSlot("location") != null)
                 return "I'm not quite sure where you mean. Say 'nearby' to see nearby worlds.";
@@ -130,35 +142,108 @@ public class JoseAppLogic
     }    
     private static String doForSale(Intent intent, JSONObject user) throws IOException
     {
-        JSONObject ondock = OnDockLogic.queryOnDock(user);
+        OnDockBean ondock = OnDockLogic.queryOnDock(user);
         Slot slot = intent.getSlot("location");
         if (slot == null)
             return listLots(OnDockLogic.getFilteredLots(ondock, user));
         else if ("everything".equals(slot.getValue()) || "all".equals(slot.getValue()))
             return listLots(OnDockLogic.getLots(ondock));
-        JSONObject lot = resolveLot(intent, user, ondock);
+        DockCargoBean lot = resolveLot(intent, user, ondock);
         if (lot == null)
             return "I'm not quite sure where you mean. Say 'dock' to see everything for sale.";
         String name = OnDockLogic.getName(lot);
         int size = OnDockLogic.getSize(lot);
-        int price = OnDockLogic.getPurchasePrice(lot);
+        long price = OnDockLogic.getPurchasePrice(lot);
         return size+" tons of "+name+" for "+price+" talents. ";
     }    
+    private static String doBuy(Intent intent, JSONObject user) throws IOException
+    {
+        OnDockBean ondock = OnDockLogic.queryOnDock(user);
+        Slot slot = intent.getSlot("lotnum");
+        if (slot == null)
+            return "I'm not quite sure where you mean. Say 'buy' and the lot number or name to purcase a lot.";
+        else if ("everything".equals(slot.getValue()) || "all".equals(slot.getValue()))
+        {
+            StringBuffer msg = new StringBuffer();
+            for (DockCargoBean lot : ondock.getCargo())
+                msg.append(UserLogic.buy(user, lot));
+            return msg.toString();
+        }
+        DockCargoBean lot = resolveLot(intent, user, ondock);
+        if (lot == null)
+            return "I'm not quite sure which lot you mean. Say 'dock' to see everything for sale.";
+        return UserLogic.buy(user, lot);
+    }    
+    private static String doHold(Intent intent, JSONObject user) throws IOException
+    {
+        List<DockCargoBean> hold = UserLogic.getInHold(user);
+        if (hold.size() == 0)
+            return "Your hold is empty.";
+        int tot = 0;
+        StringBuffer msg = new StringBuffer();
+        for (DockCargoBean lot : hold)
+        {
+            msg.append(lot.getSize()+" tons of "+lot.getName()+". ");
+            tot += lot.getSize();
+        }
+        if (hold.size() > 1)
+            msg.insert(0, "You have "+tot+" tons of cargo in your hold. ");
+        return msg.toString();
+    }    
+    private static String doPrice(Intent intent, JSONObject user) throws IOException
+    {
+        List<DockCargoBean> hold = UserLogic.getInHold(user);
+        if (hold.size() == 0)
+            return "Your hold is empty.";
+        Slot slot = intent.getSlot("lotnum");
+        if (slot == null)
+            return "I'm not quite sure where you mean. Say 'price' and the lot number or name to price out a lot.";
+        else if ("everything".equals(slot.getValue()) || "all".equals(slot.getValue()))
+        {
+            StringBuffer msg = new StringBuffer();
+            for (DockCargoBean lot : hold)
+                msg.append(OnDockLogic.price(lot));
+            return msg.toString();
+        }
+        DockCargoBean lot = OnDockLogic.findLot(hold, slot.getValue());
+        if (lot == null)
+            return "I'm not quite sure which lot you mean. Say 'price all' to see what you can get for your cargo.";
+        return OnDockLogic.price(lot);
+    }    
+    private static String doSell(Intent intent, JSONObject user) throws IOException
+    {
+        List<DockCargoBean> hold = UserLogic.getInHold(user);
+        if (hold.size() == 0)
+            return "Your hold is empty.";
+        Slot slot = intent.getSlot("lotnum");
+        if (slot == null)
+            return "I'm not quite sure where you mean. Say 'sell' and the lot number or name to sell a lot.";
+        else if ("everything".equals(slot.getValue()) || "all".equals(slot.getValue()))
+        {
+            StringBuffer msg = new StringBuffer();
+            for (DockCargoBean lot : hold)
+                msg.append(UserLogic.sell(user, lot));
+            return msg.toString();
+        }
+        DockCargoBean lot = OnDockLogic.findLot(hold, slot.getValue());
+        if (lot == null)
+            return "I'm not quite sure which lot you mean. Say 'price all' to see what you can get for your cargo.";
+        return UserLogic.sell(user, lot);
+    }    
     
-    private static String listLots(JSONArray lots)
+    private static String listLots(List<DockCargoBean> lots)
     {
         StringBuffer sb = new StringBuffer();
-        for (Object o : lots)
+        for (DockCargoBean lot : lots)
         {
-            JSONObject lot = (JSONObject)o;
             String name = OnDockLogic.getName(lot);
             int size = OnDockLogic.getSize(lot);
-            int price = OnDockLogic.getPurchasePrice(lot);
+            long price = OnDockLogic.getPurchasePrice(lot);
             sb.append(size+" tons of "+name+" for "+price+" talents. ");
         }
         return sb.toString();
     }
-    private static JSONObject resolveLot(Intent intent, JSONObject user, JSONObject ondock) throws IOException
+    private static DockCargoBean resolveLot(Intent intent, JSONObject user, OnDockBean ondock)
     {
         Slot slot = intent.getSlot("lotnum");
         if (slot == null)
@@ -166,10 +251,10 @@ public class JoseAppLogic
         String lotName = slot.getValue();
         if ((lotName == null) || (lotName.length() == 0))
             return null;
-        JSONObject lot = OnDockLogic.findLot(OnDockLogic.getFilteredLots(ondock, user), lotName);
+        DockCargoBean lot = OnDockLogic.findLot(OnDockLogic.getFilteredLots(ondock, user), lotName);
         return lot;
     }
-    private static JSONObject resolveLocation(Intent intent, JSONObject user) throws IOException
+    private static PortBean resolveLocation(Intent intent, JSONObject user) throws IOException
     {
         Slot slot = intent.getSlot("location");
         if (slot == null)
@@ -177,7 +262,7 @@ public class JoseAppLogic
         String locationName = slot.getValue();
         if ((locationName == null) || (locationName.length() == 0))
             return null;
-        JSONObject ports = PortsLogic.getNearbyPorts(UserLogic.getLocation(user), UserLogic.getJump(user));
+        PortsBean ports = PortsLogic.getNearbyPorts(UserLogic.getLocation(user), UserLogic.getJump(user));
         return PortsLogic.findPort(ports, locationName);
     }
     

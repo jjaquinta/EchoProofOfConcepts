@@ -3,13 +3,17 @@ package jo.jose.logic;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import jo.d4w.web.data.PortBean;
+import jo.d4w.web.data.PortsBean;
+import jo.d4w.web.logic.URILogic;
+import jo.echo.util.BaseServlet;
+import jo.jose.JoseServlet;
 
 public class PortsLogic
 {
-    public static JSONObject getNearbyPorts(String portURI, int radius) throws IOException
+    public static PortsBean getNearbyPorts(String portURI, int radius) throws IOException
     {
         URI u;
         try
@@ -21,23 +25,23 @@ public class PortsLogic
             throw new IOException(e);
         }
         String subURI = "ports://" + u.getAuthority()+"/"+radius*3.26;
-        return LookupLogic.query(subURI);
+        BaseServlet.log(JoseServlet.class, "querying "+subURI);
+        return (PortsBean)URILogic.getFromURI(subURI);
     }
 
-    public static JSONObject findPort(JSONObject ports, String locationName)
+    public static PortBean findPort(PortsBean ports, String locationName)
     {
-        JSONArray ps = getPorts(ports);
-        for (Object op : ps)
+        List<PortBean> ps = getPorts(ports);
+        for (PortBean p : ps)
         {
-            JSONObject p = (JSONObject)op;
-            if (locationName.equalsIgnoreCase((String)p.get("name")))
+            if (locationName.equalsIgnoreCase(p.getName()))
                 return p;
         }
         return null;
     }
 
-    public static JSONArray getPorts(JSONObject ports)
+    public static List<PortBean> getPorts(PortsBean ports)
     {
-        return (JSONArray)ports.get("ports");
+        return ports.getPorts();
     }
 }

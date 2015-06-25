@@ -22,8 +22,33 @@
       "intent": "FORSALE"
     },
     {
+      "slots": [{
+          "name": "lotnum",
+          "type": "LITERAL"
+        }],
+      "intent": "BUY"
+    },
+    {
+      "slots": [{
+          "name": "lotnum",
+          "type": "LITERAL"
+        }],
+      "intent": "PRICE"
+    },
+    {
+      "slots": [{
+          "name": "lotnum",
+          "type": "LITERAL"
+        }],
+      "intent": "SELL"
+    },
+    {
       "slots": [],
       "intent": "SPACE"
+    },
+    {
+      "slots": [],
+      "intent": "HOLD"
     },
     {
       "slots": [],

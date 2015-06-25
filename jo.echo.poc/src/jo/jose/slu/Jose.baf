@@ -30,3 +30,15 @@ FORSALE	tell me about {one|lotnum}
 FORSALE	what's on the dock
 FORSALE	dock
 FORSALE	dockside
+BUY	buy lot number {one|lotnum}
+BUY	buy {one|lotnum}
+HOLD	hold
+HOLD	what's in my hold
+HOLD	what am I carrying
+HOLD	what have I got
+SELL	sell lot number {one|lotnum}
+SELL	sell {one|lotnum}
+PRICE	price lot number {one|lotnum}
+PRICE	price {one|lotnum}
+PRICE	what can I get for lot number {one|lotnum}
+PRICE	what can I get for {one|lotnum}
