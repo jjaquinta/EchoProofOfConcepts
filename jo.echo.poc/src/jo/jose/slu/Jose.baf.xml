@@ -1,0 +1,557 @@
+<baf>
+<wordList id="locations">
+<word>Accrington</word>
+<word>Acle</word>
+<word>Alcester</word>
+<word>Aldershot</word>
+<word>Alford</word>
+<word>Alnwick</word>
+<word>Alton</word>
+<word>Amble</word>
+<word>Amersham</word>
+<word>Amesbury</word>
+<word>Arlesey</word>
+<word>Ashburton</word>
+<word>Ashby</word>
+<word>Ashford</word>
+<word>Ashington</word>
+<word>Askern</word>
+<word>Aspatria</word>
+<word>Atherstone</word>
+<word>Attleborough</word>
+<word>Austell</word>
+<word>Axbridge</word>
+<word>Aylesbury</word>
+<word>Bacup</word>
+<word>Banbury</word>
+<word>Barking</word>
+<word>Barnes</word>
+<word>Barnoldswick</word>
+<word>Barrow</word>
+<word>Batley</word>
+<word>Battle</word>
+<word>Bawtry</word>
+<word>Beaconsfield</word>
+<word>Bebington</word>
+<word>Bedale</word>
+<word>Bedworth</word>
+<word>Belper</word>
+<word>Berwick</word>
+<word>Bewdley</word>
+<word>Bexhill</word>
+<word>Bexley</word>
+<word>Bicester</word>
+<word>Birchwood</word>
+<word>Bishop's Castle</word>
+<word>Bishop's Stortford</word>
+<word>Bishop's Waltham</word>
+<word>Blackburn</word>
+<word>Blackwater</word>
+<word>Blaise</word>
+<word>Blyth</word>
+<word>Bodmin</word>
+<word>Bollington</word>
+<word>Bolsover</word>
+<word>Bolton</word>
+<word>Bootle</word>
+<word>Boston</word>
+<word>Bournemouth</word>
+<word>Brackley</word>
+<word>Brading</word>
+<word>Bradninch</word>
+<word>Braintree</word>
+<word>Braunstone</word>
+<word>Brentford</word>
+<word>Bridgnorth</word>
+<word>Bridport</word>
+<word>Brigg</word>
+<word>Brixham</word>
+<word>Bromborough</word>
+<word>Bromley</word>
+<word>Bromyard</word>
+<word>Broseley</word>
+<word>Broughton</word>
+<word>Buckingham</word>
+<word>Budleigh Salterton</word>
+<word>Bulwell</word>
+<word>Buntingford</word>
+<word>Burnham</word>
+<word>Burnley</word>
+<word>Burntwood</word>
+<word>Burslem</word>
+<word>Burton</word>
+<word>Bushey</word>
+<word>Caistor</word>
+<word>Calne</word>
+<word>Camborne</word>
+<word>Cannock</word>
+<word>Carlton Colville</word>
+<word>Carnforth</word>
+<word>Carshalton</word>
+<word>Carterton</word>
+<word>Castle Cary</word>
+<word>Chagford</word>
+<word>Chapel</word>
+<word>Chatteris</word>
+<word>Cheadle</word>
+<word>Chesham</word>
+<word>Cheshunt</word>
+<word>Chester</word>
+<word>Chesterfield</word>
+<word>Chickerell</word>
+<word>Chingford</word>
+<word>Chippenham</word>
+<word>Chipping Campden</word>
+<word>Chorley</word>
+<word>Christchurch</word>
+<word>Chudleigh</word>
+<word>Church Stretton</word>
+<word>Cinderford</word>
+<word>Clare</word>
+<word>Cleator Moor</word>
+<word>Cleethorpes</word>
+<word>Clun</word>
+<word>Colburn</word>
+<word>Colchester</word>
+<word>Coleford</word>
+<word>Coleshill</word>
+<word>Colne</word>
+<word>Colyton</word>
+<word>Congleton</word>
+<word>Conisbrough</word>
+<word>Corbridge</word>
+<word>Corringham</word>
+<word>Corsham</word>
+<word>Crewe</word>
+<word>Cricklade</word>
+<word>Cromer</word>
+<word>Crowborough</word>
+<word>Crowle</word>
+<word>Darley Dale</word>
+<word>Darlington</word>
+<word>Darwen</word>
+<word>Daventry</word>
+<word>Dawlish</word>
+<word>Dereham</word>
+<word>Desborough</word>
+<word>Devizes</word>
+<word>Diss</word>
+<word>Doncaster</word>
+<word>Dorchester</word>
+<word>Downham Market</word>
+<word>Dudley</word>
+<word>Dukinfield</word>
+<word>Dunstable</word>
+<word>Dursley</word>
+<word>East Grinstead</word>
+<word>Eastwood</word>
+<word>Edmonton</word>
+<word>Ellesmere</word>
+<word>Ellesmere Port</word>
+<word>Epping</word>
+<word>Erith</word>
+<word>Eton</word>
+<word>Exmouth</word>
+<word>Fairford</word>
+<word>Falmouth</word>
+<word>Fareham</word>
+<word>Farnham</word>
+<word>Featherstone</word>
+<word>Felixstowe</word>
+<word>Ferndown</word>
+<word>Fleetwood</word>
+<word>Flitwick</word>
+<word>Folkestone</word>
+<word>Fordingbridge</word>
+<word>Framlingham</word>
+<word>Frinton</word>
+<word>Frome</word>
+<word>Gainsborough</word>
+<word>Garstang</word>
+<word>Gateshead</word>
+<word>Gillingham</word>
+<word>Glastonbury</word>
+<word>Glossop</word>
+<word>Goole</word>
+<word>Grange</word>
+<word>Grantham</word>
+<word>Gravesend</word>
+<word>Grays</word>
+<word>Great Dunmow</word>
+<word>Great Yarmouth</word>
+<word>Grimsby</word>
+<word>Guildford</word>
+<word>Hadleigh</word>
+<word>Hailsham</word>
+<word>Halesworth</word>
+<word>Halifax</word>
+<word>Haltwhistle</word>
+<word>Harlow</word>
+<word>Harpenden</word>
+<word>Harrogate</word>
+<word>Harrow</word>
+<word>Hastings</word>
+<word>Hatfield</word>
+<word>Havant</word>
+<word>Haxby</word>
+<word>Haywards Heath</word>
+<word>Heathfield</word>
+<word>Hebden Royd</word>
+<word>Hednesford</word>
+<word>Helston</word>
+<word>Hemel Hempstead</word>
+<word>Hemsworth</word>
+<word>Hexham</word>
+<word>High Wycombe</word>
+<word>Higham Ferrers</word>
+<word>Highbridge</word>
+<word>Highworth</word>
+<word>Hitchin</word>
+<word>Horley</word>
+<word>Hornsea</word>
+<word>Horsham</word>
+<word>Hounslow</word>
+<word>Hungerford</word>
+<word>Hunstanton</word>
+<word>Huntingdon</word>
+<word>Hyde</word>
+<word>Ilkeston</word>
+<word>Ilkley</word>
+<word>Immingham</word>
+<word>Ingleby Barwick</word>
+<word>Ipswich</word>
+<word>Irthlingborough</word>
+<word>Jarrow</word>
+<word>Keighley</word>
+<word>Kempston</word>
+<word>Kendal</word>
+<word>Keynsham</word>
+<word>King's Lynn</word>
+<word>Kingsbridge</word>
+<word>Kingston</word>
+<word>Kington</word>
+<word>Kirkby</word>
+<word>Kirkbymoorside</word>
+<word>Knaresborough</word>
+<word>Knutsford</word>
+<word>Leiston</word>
+<word>Lewes</word>
+<word>Leyburn</word>
+<word>Loddon</word>
+<word>Loftus</word>
+<word>Longtown</word>
+<word>Looe</word>
+<word>Loughton</word>
+<word>Louth</word>
+<word>Lowestoft</word>
+<word>Lynton</word>
+<word>Lytham St Annes</word>
+<word>Mablethorpe</word>
+<word>Macclesfield</word>
+<word>Madeley</word>
+<word>Maghull</word>
+<word>Maltby</word>
+<word>Manningtree</word>
+<word>Marazion</word>
+<word>March</word>
+<word>Margate</word>
+<word>Market Drayton</word>
+<word>Market Harborough</word>
+<word>Market Rasen</word>
+<word>Market Weighton</word>
+<word>Marlow</word>
+<word>Mary Cray</word>
+<word>Melksham</word>
+<word>Mere</word>
+<word>Mexborough</word>
+<word>Middleton</word>
+<word>Middlewich</word>
+<word>Midhurst</word>
+<word>Midsomer Norton</word>
+<word>Mildenhall</word>
+<word>Minehead</word>
+<word>Mirfield</word>
+<word>Mitcheldean</word>
+<word>Morecambe</word>
+<word>Moreton</word>
+<word>Moretonhampstead</word>
+<word>Morpeth</word>
+<word>Mossley</word>
+<word>Much Wenlock</word>
+<word>Nailsea</word>
+<word>Neston</word>
+<word>New Alresford</word>
+<word>New Mills</word>
+<word>New Milton</word>
+<word>Newcastle</word>
+<word>Newent</word>
+<word>Newhaven</word>
+<word>Newmarket</word>
+<word>Newport</word>
+<word>Newport Pagnell</word>
+<word>Newquay</word>
+<word>Newton</word>
+<word>North Hykeham</word>
+<word>North Petherton</word>
+<word>North Walsham</word>
+<word>Northallerton</word>
+<word>Northfleet</word>
+<word>Northleach with Eastington</word>
+<word>Northwich</word>
+<word>Norton</word>
+<word>Nuneaton</word>
+<word>Oakengates</word>
+<word>Oakham</word>
+<word>Orford</word>
+<word>Ormskirk</word>
+<word>Ossett</word>
+<word>Oswestry</word>
+<word>Oundle</word>
+<word>Padiham</word>
+<word>Peacehaven</word>
+<word>Penistone</word>
+<word>Penkridge</word>
+<word>Penrith</word>
+<word>Penwortham</word>
+<word>Petersfield</word>
+<word>Petworth</word>
+<word>Pickering</word>
+<word>Pocklington</word>
+<word>Polegate</word>
+<word>Pontefract</word>
+<word>Poole</word>
+<word>Portishead</word>
+<word>Portland</word>
+<word>Poynton</word>
+<word>Radstock</word>
+<word>Raunds</word>
+<word>Rayleigh</word>
+<word>Reading</word>
+<word>Redenhall with Harleston</word>
+<word>Reepham</word>
+<word>Ringwood</word>
+<word>Ripley</word>
+<word>Rochford</word>
+<word>Romsey</word>
+<word>Rowley Regis</word>
+<word>Royal Wootton Bassett</word>
+<word>Royston</word>
+<word>Rugby</word>
+<word>Rushden</word>
+<word>Rye</word>
+<word>Saltash</word>
+<word>Sandiacre</word>
+<word>Sandwich</word>
+<word>Saxmundham</word>
+<word>Scarborough</word>
+<word>Scunthorpe</word>
+<word>Seaham</word>
+<word>Shaftesbury</word>
+<word>Shanklin</word>
+<word>Shefford</word>
+<word>Shifnal</word>
+<word>Shipston</word>
+<word>Shoreham</word>
+<word>Shrewsbury</word>
+<word>Sidmouth</word>
+<word>Silloth</word>
+<word>Silsden</word>
+<word>Skegness</word>
+<word>Skelton</word>
+<word>Sleaford</word>
+<word>Solihull</word>
+<word>Somerton</word>
+<word>South Cave</word>
+<word>South Molton</word>
+<word>South Shields</word>
+<word>Southall</word>
+<word>Southam</word>
+<word>Southborough</word>
+<word>Southend</word>
+<word>Southwell</word>
+<word>Southwick</word>
+<word>Spalding</word>
+<word>Spilsby</word>
+<word>Staines</word>
+<word>Stalham</word>
+<word>Stalybridge</word>
+<word>Stamford</word>
+<word>Stanhope</word>
+<word>Stanley</word>
+<word>Stapleford</word>
+<word>Staveley</word>
+<word>Stevenage</word>
+<word>Steyning</word>
+<word>Stockport</word>
+<word>Stocksbridge</word>
+<word>Stone</word>
+<word>Stonehouse</word>
+<word>Stourport</word>
+<word>Stow</word>
+<word>Stowmarket</word>
+<word>Stretford</word>
+<word>Strood</word>
+<word>Sudbury</word>
+<word>Sutton</word>
+<word>Sutton Coldfield</word>
+<word>Swanley</word>
+<word>Swindon</word>
+<word>Tavistock</word>
+<word>Telscombe</word>
+<word>Tenterden</word>
+<word>Tetbury</word>
+<word>Tewkesbury</word>
+<word>Thatcham</word>
+<word>Thetford</word>
+<word>Thornaby</word>
+<word>Thrapston</word>
+<word>Tickhill</word>
+<word>Tidworth</word>
+<word>Tisbury</word>
+<word>Tonbridge</word>
+<word>Torquay</word>
+<word>Tottenham</word>
+<word>Towcester</word>
+<word>Trowbridge</word>
+<word>Tynemouth</word>
+<word>Uckfield</word>
+<word>Ulverston</word>
+<word>Verwood</word>
+<word>Wallingford</word>
+<word>Wallsend</word>
+<word>Walsall</word>
+<word>Walthamstow</word>
+<word>Wantage</word>
+<word>Ware</word>
+<word>Warminster</word>
+<word>Warrington</word>
+<word>Wath</word>
+<word>Watton</word>
+<word>Wednesbury</word>
+<word>Wellington</word>
+<word>Wem</word>
+<word>Wendover</word>
+<word>West Bedlington</word>
+<word>West Bromwich</word>
+<word>West Ham</word>
+<word>West Malling</word>
+<word>West Mersea</word>
+<word>West Tilbury</word>
+<word>Westbury</word>
+<word>Westhoughton</word>
+<word>Weston</word>
+<word>Weybridge</word>
+<word>Weymouth</word>
+<word>Whitby</word>
+<word>Whitchurch</word>
+<word>Whitehaven</word>
+<word>Whitnash</word>
+<word>Whittlesey</word>
+<word>Whitworth</word>
+<word>Widnes</word>
+<word>Wigton</word>
+<word>Wimbledon</word>
+<word>Wimborne Minster</word>
+<word>Wincanton</word>
+<word>Winchcombe</word>
+<word>Windermere</word>
+<word>Windsor</word>
+<word>Winsford</word>
+<word>Wisbech</word>
+<word>Witham</word>
+<word>Wiveliscombe</word>
+<word>Woburn</word>
+<word>Wokingham</word>
+<word>Woodbridge</word>
+<word>Woodley</word>
+<word>Wooler</word>
+<word>Workington</word>
+<word>Worksop</word>
+<word>Worthing</word>
+<word>Wymondham</word>
+<word>Yarm</word>
+</wordList>
+<wordList id="lots">
+<word>one</word>
+<word>two</word>
+<word>three</word>
+<word>four</word>
+<word>five</word>
+<word>six</word>
+<word>seven</word>
+<word>eight</word>
+<word>nine</word>
+<word>ten</word>
+<word>all</word>
+<word>everything</word>
+<word>animal</word>
+<word>chemicals</word>
+<word>foodstuffs</word>
+<word>footwear</word>
+<word>machinery</word>
+<word>metals</word>
+<word>miscellaneous</word>
+<word>plastics</word>
+<word>raw hides</word>
+<word>service</word>
+<word>stone</word>
+<word>textiles</word>
+<word>transportation</word>
+<word>vegetable products</word>
+<word>wood</word>
+<word>material products</word>
+</wordList>
+<intent>LOCATION	where am I</intent>
+<intent>LOCATION	look</intent>
+<intent>LOCATION	tell me about {<insert id="locations"/>|location}</intent>
+<intent>JUMP	jump to {<insert id="locations"/>|location}</intent>
+<intent>JUMP	go to {<insert id="locations"/>|location}</intent>
+<intent>JUMP	jump {<insert id="locations"/>|location}</intent>
+<intent>JUMP	move to {<insert id="locations"/>|location}</intent>
+<intent>SPACE	How much space do I have</intent>
+<intent>SPACE	How much more can I carry</intent>
+<intent>SPACE	How much can I carry</intent>
+<intent>SPACE	What can I fit in</intent>
+<intent>SPACE	space</intent>
+<intent>MONEY	How much money do I have</intent>
+<intent>MONEY	How much money</intent>
+<intent>MONEY	bank account</intent>
+<intent>MONEY	money</intent>
+<intent>NEARBY	What's nearby</intent>
+<intent>NEARBY	where can I go</intent>
+<intent>NEARBY	nearby</intent>
+<intent>NEARBY	neighborhood</intent>
+<intent>RESET	reset</intent>
+<intent>RESET	start over</intent>
+<intent>DATE	date</intent>
+<intent>DATE	time</intent>
+<intent>DATE	what day is it</intent>
+<intent>DATE	day</intent>
+<intent>DATE	now</intent>
+<intent>FORSALE	what's for sale</intent>
+<intent>FORSALE	tell me about lot number {<insert id="lots"/>|lotnum}</intent>
+<intent>FORSALE	tell me about {<insert id="lots"/>|lotnum}</intent>
+<intent>FORSALE	what's on the dock</intent>
+<intent>FORSALE	dock</intent>
+<intent>FORSALE	dockside</intent>
+<intent>BUY	buy lot number {<insert id="lots"/>|lotnum}</intent>
+<intent>BUY	buy {<insert id="lots"/>|lotnum}</intent>
+<intent>HOLD	hold</intent>
+<intent>HOLD	what's in my hold</intent>
+<intent>HOLD	what am I carrying</intent>
+<intent>HOLD	what have I got</intent>
+<intent>SELL	sell lot number {<insert id="lots"/>|lotnum}</intent>
+<intent>SELL	sell {<insert id="lots"/>|lotnum}</intent>
+<intent>PRICE	price lot number {<insert id="lots"/>|lotnum}</intent>
+<intent>PRICE	price {<insert id="lots"/>|lotnum}</intent>
+<intent>PRICE	what can I get for lot number {<insert id="lots"/>|lotnum}</intent>
+<intent>PRICE	what can I get for {<insert id="lots"/>|lotnum}</intent>
+<intent>BOOK	book</intent>
+<intent>BOOK	tell me about the book</intent>
+<intent>BOOK	what book</intent>
+<intent>EXCERPT	excerpt</intent>
+<intent>EXCERPT	read me an excerpt</intent>
+<intent>EXCERPT	read me an excerpt from the book</intent>
+<intent>EXCERPT	read me the book</intent>
+<intent>JOSE	jose</intent>
+</baf>

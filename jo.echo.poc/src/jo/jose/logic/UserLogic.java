@@ -5,6 +5,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import jo.d4w.web.data.DockCargoBean;
 import jo.d4w.web.logic.URILogic;
@@ -127,7 +128,7 @@ public class UserLogic
         user.put("man", 1);
         user.put("hold", new JSONArray());
         user.put("money", 10000);
-        user.put("location", "port://11901070f@070f00010001/Northfleet");
+        user.put("location", "port://11101070f@070f00010001/Bedale");
         user.put("year", 1100);
         user.put("day", 1);
         user.put("quest", "quest:///");
@@ -174,12 +175,14 @@ public class UserLogic
 
     public static List<DockCargoBean> getInHold(JSONObject user)
     {
+        String location = getLocation(user);
         List<DockCargoBean> hold = new ArrayList<DockCargoBean>();
         JSONArray jhold = (JSONArray)user.get("hold");
         for (Object o : jhold)
         {
-            String uri = (String)o;
-            DockCargoBean lot = (DockCargoBean)URILogic.getFromURI(uri);
+            URIBuilder uri = new URIBuilder((String)o);
+            uri.setQuery("at", location);
+            DockCargoBean lot = (DockCargoBean)URILogic.getFromURI(uri.toString());
             if (lot != null)
                 hold.add(lot);
         }
@@ -197,6 +200,9 @@ public class UserLogic
         JSONArray hold = (JSONArray)user.get("hold");
         boolean foundIt = false;
         URIBuilder lookingFor = new URIBuilder(lot.getURI());
+        Properties p = lookingFor.getQuery();
+        p.remove("at");
+        lookingFor.setQuery(p);
         BaseServlet.log(JoseServlet.class, "Looking for '"+lot.getURI()+"'");
         for (int i = 0; i < hold.size(); i++)
         {

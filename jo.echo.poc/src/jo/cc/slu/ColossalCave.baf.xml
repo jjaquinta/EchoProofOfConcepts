@@ -1,0 +1,122 @@
+<baf>
+<wordList id="object">
+<word>sliver</word>
+<word>bars</word>
+<word>silver bars</word>
+<word>all</word>
+<word>bird</word>
+<word>cage</word>
+<word>wicker cage</word>
+<word>gold nugget</word>
+<word>nugget</word>
+<word>keys</word>
+<word>food</word>
+<word>lamp</word>
+<word>grate</word>
+<word>dragon</word>
+<word>rug</word>
+<word>persian rug</word>
+<word>water</word>
+<word>plant</word>
+<word>emerald</word>
+<word>vase</word>
+<word>ming vase</word>
+<word>pillow</word>
+<word>pyramid</word>
+<word>beanstalk</word>
+<word>eggs</word>
+<word>door</word>
+<word>trident</word>
+<word>bear</word>
+<word>troll</word>
+<word>chain</word>
+<word>spices</word>
+<word>magazine</word>
+<word>pearl</word>
+<word>jewelry</word>
+<word>coins</word>
+<word>diamonds</word>
+<word>rod</word>
+<word>axe</word>
+<word>dwarf</word>
+</wordList>
+<intent>NORTH	north</intent>
+<intent>NORTH	go north</intent>
+<intent>SOUTH	south</intent>
+<intent>SOUTH	go south</intent>
+<intent>EAST	east</intent>
+<intent>EAST	go east</intent>
+<intent>WEST	west</intent>
+<intent>WEST	go west</intent>
+<intent>NORTH WEST	north west</intent>
+<intent>NORTH WEST	go north west</intent>
+<intent>NORTH WEST	northwest</intent>
+<intent>NORTH WEST	go northwest</intent>
+<intent>SOUTH WEST	south west</intent>
+<intent>SOUTH WEST	go south west</intent>
+<intent>SOUTH WEST	southwest</intent>
+<intent>SOUTH WEST	go southwest</intent>
+<intent>NORTH EAST	north east</intent>
+<intent>NORTH EAST	go north east</intent>
+<intent>NORTH EAST	northeast</intent>
+<intent>NORTH EAST	go northeast</intent>
+<intent>SOUTH EAST	south east</intent>
+<intent>SOUTH EAST	go south east</intent>
+<intent>SOUTH EAST	southeast</intent>
+<intent>SOUTH EAST	go southeast</intent>
+<intent>UP	up</intent>
+<intent>UP	go up</intent>
+<intent>DOWN	down</intent>
+<intent>DOWN	go down</intent>
+<intent>UP	climb up</intent>
+<intent>DOWN	climb down</intent>
+<intent>LOOK	look</intent>
+<intent>UNLOCK	unlock {cage|directObject} with {keys|indirectObject}</intent>
+<intent>UNLOCK	unlock {chain|directObject} with {keys|indirectObject}</intent>
+<intent>UNLOCK	unlock {grate|directObject} with {keys|indirectObject}</intent>
+<intent>UNLOCK	unlock {door|directObject} with {keys|indirectObject}</intent>
+<intent>POUR	pour {water|directObject} on {<insert id="object"/>|indirectObject}</intent>
+<intent>GIVE	give {<insert id="object"/>|directObject} to {<insert id="object"/>|indirectObject}</intent>
+<intent>THROW	throw {axe|directObject} at {<insert id="object"/>|indirectObject}</intent>
+<intent>GET	get {<insert id="object"/>|directObject}</intent>
+<intent>TAKE	take {<insert id="object"/>|directObject}</intent>
+<intent>TAKE	grab {<insert id="object"/>|directObject}</intent>
+<intent>DROP	drop {<insert id="object"/>|directObject}</intent>
+<intent>OPEN	open {<insert id="object"/>|directObject}</intent>
+<intent>LIGHT	light {<insert id="object"/>|directObject}</intent>
+<intent>LIGHT	turn on {<insert id="object"/>|directObject}</intent>
+<intent>KILL	kill {<insert id="object"/>|directObject}</intent>
+<intent>FILL	fill {<insert id="object"/>|directObject}</intent>
+<intent>CLIMB	climb {<insert id="object"/>|directObject}</intent>
+<intent>WAVE	wave {<insert id="object"/>|directObject}</intent>
+<intent>OIL	oil {<insert id="object"/>|directObject}</intent>
+<intent>GIVE	give {<insert id="object"/>|directObject}</intent>
+<intent>PLUGH	plugh</intent>
+<intent>PLUGH	plug</intent>
+<intent>XYZZY	xyzzy</intent>
+<intent>XYZZY	x y z z y</intent>
+<intent>XYZZY	ex why zee zee why</intent>
+<intent>XYZZY	shazam</intent>
+<intent>YES	yes</intent>
+<intent>YES	yep</intent>
+<intent>YES	yeah</intent>
+<intent>NO	no</intent>
+<intent>NO	nope</intent>
+<intent>NO	not a chance</intent>
+<intent>PLOVER	plover</intent>
+<intent>BLAST	blast</intent>
+<intent>FEE	fee</intent>
+<intent>FIE	fie</intent>
+<intent>FOE	foe</intent>
+<intent>FOO	foo</intent>
+<intent>ENTER	enter</intent>
+<intent>ENTER	in</intent>
+<intent>ENTER	go in</intent>
+<intent>OUT	out</intent>
+<intent>OUT	go out</intent>
+<intent>OUT	exit</intent>
+<intent>INVENTORY	inventory</intent>
+<intent>INVENTORY	backpack</intent>
+<intent>INVENTORY	carrying</intent>
+<intent>INVENTORY	what am i carrying</intent>
+</baf>

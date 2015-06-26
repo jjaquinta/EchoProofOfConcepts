@@ -13,6 +13,14 @@
 	  <servlet-name>GroceryListServlet</servlet-name>
 	  <servlet-class>jo.gl.GroceryListServlet</servlet-class>
 	</servlet>
+	<servlet>
+	  <servlet-name>UPSServlet</servlet-name>
+	  <servlet-class>jo.ups.UPSServlet</servlet-class>
+	</servlet>
+	<servlet>
+	  <servlet-name>JoseServlet</servlet-name>
+	  <servlet-class>jo.jose.JoseServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 	  <servlet-name>HelloWorldServlet</servlet-name>
 	  <url-pattern>/hello</url-pattern>
@@ -24,6 +32,14 @@
 	<servlet-mapping>
 	  <servlet-name>GroceryListServlet</servlet-name>
 	  <url-pattern>/gl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+	  <servlet-name>UPSServlet</servlet-name>
+	  <url-pattern>/ups</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+	  <servlet-name>JoseServlet</servlet-name>
+	  <url-pattern>/jose</url-pattern>
 	</servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>

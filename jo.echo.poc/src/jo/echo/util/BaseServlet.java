@@ -49,7 +49,7 @@ public class BaseServlet extends SpeechletServlet
     @Override
     public void setSpeechlet(Speechlet speechlet)
     {
-        super.setSpeechlet(new SpeechletWrapper(speechlet));
+        super.setSpeechlet(new SpeechletWrapper(getClass(), speechlet));
     }
 
     @Override
@@ -147,24 +147,26 @@ public class BaseServlet extends SpeechletServlet
     }
     
     class SpeechletWrapper implements Speechlet {
+        private Class<?>  mServlet;
         private Speechlet mBase;
         
-        public SpeechletWrapper(Speechlet base)
+        public SpeechletWrapper(Class<?> servlet, Speechlet base)
         {
+            mServlet = servlet;
             mBase = base;
         }
         
         @Override
         public void onSessionStarted(final SessionStartedRequest request, final Session session)
                 throws SpeechletException {
-            log("onSessionStarted requestId="+request.getRequestId()+", sessionId="+session.getSessionId());
+            log(mServlet, "onSessionStarted requestId="+request.getRequestId()+", sessionId="+session.getSessionId());
             mBase.onSessionStarted(request, session);
         }
 
         @Override
         public SpeechletResponse onLaunch(final LaunchRequest request, final Session session)
                 throws SpeechletException {
-            log("onLaunch requestId="+request.getRequestId()+", sessionId="+session.getSessionId());
+            log(mServlet, "onLaunch requestId="+request.getRequestId()+", sessionId="+session.getSessionId());
             SpeechletResponse response = mBase.onLaunch(request, session);
             logResponse(response);
             return response;
@@ -173,14 +175,14 @@ public class BaseServlet extends SpeechletServlet
         @Override
         public SpeechletResponse onIntent(final IntentRequest request, final Session session)
                 throws SpeechletException {
-            log("onIntent requestId="+request.getRequestId()+", sessionId="+session.getSessionId());
+            log(mServlet, "onIntent requestId="+request.getRequestId()+", sessionId="+session.getSessionId());
             if (request.getIntent() != null)
             {
                 StringBuffer sb = new StringBuffer();
                 sb.append(request.getIntent().getName()+":");
                 for (Slot s : request.getIntent().getSlots().values())
                     sb.append(" "+s.getName()+"="+s.getValue());
-                log(sb.toString());
+                log(mServlet, sb.toString());
             }
             SpeechletResponse response = mBase.onIntent(request, session);
             logResponse(response);
@@ -190,14 +192,14 @@ public class BaseServlet extends SpeechletServlet
         @Override
         public void onSessionEnded(final SessionEndedRequest request, final Session session)
                 throws SpeechletException {
-            log("onSessionEnded requestId="+request.getRequestId()+", sessionId="+session.getSessionId());
+            log(mServlet, "onSessionEnded requestId="+request.getRequestId()+", sessionId="+session.getSessionId());
             mBase.onSessionEnded(request, session);
         }
 
         private void logResponse(SpeechletResponse response)
         {
             if (response.getOutputSpeech() instanceof PlainTextOutputSpeech)
-                log(((PlainTextOutputSpeech)response.getOutputSpeech()).getText());
+                log(mServlet, ((PlainTextOutputSpeech)response.getOutputSpeech()).getText());
         }
         
         public Speechlet getBase()

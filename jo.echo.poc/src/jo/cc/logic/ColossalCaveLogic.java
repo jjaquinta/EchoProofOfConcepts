@@ -128,5 +128,9 @@ public class ColossalCaveLogic
             { "Donald Ekman, David M. Baggett (1993) and Graham Nelson (1994)", "" },
             { "[In memoriam Stephen Bishop (1820?-1857): GN]", "" },
             { "Release 9 / Serial number 060321 / Inform v6.30 Library 6/11 S", "" },
+            { "XYZZY", "shazam" },
+            { "PLUGH", "plug" },
+            { "E/W", "east-west" },
+            { "N/S", "north-south" },
         };
 }

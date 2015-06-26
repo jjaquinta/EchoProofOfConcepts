@@ -65,6 +65,18 @@
     {
       "slots": [],
       "intent": "RESET"
+    },
+    {
+      "slots": [],
+      "intent": "BOOK"
+    },
+    {
+      "slots": [],
+      "intent": "EXCERPT"
+    },
+    {
+      "slots": [],
+      "intent": "JOSE"
     }
  ]
 }
