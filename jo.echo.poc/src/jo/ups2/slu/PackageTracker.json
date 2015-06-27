@@ -1,0 +1,57 @@
+{
+  "intents": [
+    {
+      "slots": [
+      { "name": "firstDigit", "type": "LITERAL" },
+      { "name": "secondDigit", "type": "LITERAL" },
+      { "name": "thirdDigit", "type": "LITERAL" }
+        ],
+      "intent": "NUMBERS"
+    },
+    {
+      "slots": [
+      { "name": "firstDigit", "type": "NUMERIC" },
+        ],
+      "intent": "NUMBER"
+    },
+    {
+      "slots": [
+        ],
+      "intent": "STATUS"
+    },
+    {
+      "slots": [
+        ],
+      "intent": "REMOVE"
+    },
+    {
+      "slots": [
+        ],
+      "intent": "NO"
+    },
+    {
+      "slots": [
+        ],
+      "intent": "YES"
+    },
+    {
+      "slots": [
+        ],
+      "intent": "ABORT"
+    },
+    {
+      "slots": [
+        ],
+      "intent": "ADD"
+    },
+    {
+      "slots": [
+        ],
+      "intent": "HELP"
+    },
+    {
+      "slots": [],
+      "intent": "CLEAR"
+    }
+ ]
+}

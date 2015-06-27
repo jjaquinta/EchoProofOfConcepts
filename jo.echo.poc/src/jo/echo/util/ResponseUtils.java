@@ -49,6 +49,8 @@ public class ResponseUtils
         if (props.containsKey("reprompt"))
         {
             String repromptText = props.getProperty("reprompt");
+            if (repromptText.startsWith("++"))
+                repromptText = output + repromptText.substring(2);
             PlainTextOutputSpeech repromptSpeech = new PlainTextOutputSpeech();
             repromptSpeech.setText(repromptText);
             Reprompt reprompt = new Reprompt();
@@ -76,5 +78,21 @@ public class ResponseUtils
                 props.put(kv.substring(0, o).trim(), kv.substring(o + 1).trim());
         }
         return output;
+    }
+    
+    public static String wordList(String[] words, int limit)
+    {
+        StringBuffer resp = new StringBuffer();
+        if (limit < 0)
+            limit = words.length;
+        for (int i = 0; i < limit; i++)
+        {
+            if (i > 0)
+                resp.append(", ");
+            if (i == limit - 1)
+                resp.append(" and ");
+            resp.append(words[i]);
+        }
+        return resp.toString();
     }
 }

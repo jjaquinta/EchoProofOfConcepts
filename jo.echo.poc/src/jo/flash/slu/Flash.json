@@ -1,0 +1,40 @@
+{
+   "intents":[
+      {
+         "slots":[
+
+         ],
+         "intent":"QUIT"
+      },
+      {
+         "slots":[
+
+         ],
+         "intent":"SCORE"
+      },
+      {
+         "slots":[
+
+         ],
+         "intent":"NEXT"
+      },
+      {
+         "slots":[
+            {
+               "name":"word",
+               "type":"LITERAL"
+            }
+         ],
+         "intent":"WORD"
+      },
+      {
+         "slots":[
+            {
+               "name":"game",
+               "type":"LITERAL"
+            }
+         ],
+         "intent":"PLAY"
+      }
+   ]
+}

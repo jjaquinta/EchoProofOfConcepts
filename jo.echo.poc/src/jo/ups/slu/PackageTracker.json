@@ -3,7 +3,7 @@
     {
       "slots": [
       { "name": "firstDigit", "type": "LITERAL" },
-      { "name": "secondDigit}", "type": "LITERAL" },
+      { "name": "secondDigit", "type": "LITERAL" },
       { "name": "thirdDigit", "type": "LITERAL" },
       { "name": "fourthDigit", "type": "LITERAL" },
       { "name": "fifthDigit", "type": "LITERAL" },

@@ -1,0 +1,38 @@
+NUMBERS	{one|firstDigit} {z|secondDigit} {one|thirdDigit}
+NUMBER	{one|firstDigit}
+NUMBER	{two|firstDigit}
+NUMBER	{three|firstDigit}
+NUMBER	{four|firstDigit}
+NUMBER	{five|firstDigit}
+NUMBER	{six|firstDigit}
+NUMBER	{seven|firstDigit}
+NUMBER	{eight|firstDigit}
+STATUS	status
+STATUS	update
+STATUS	check status
+STATUS	when
+STATUS	when are my packages coming
+ADD	add
+ADD	track
+ADD	track package
+ADD	add package
+ADD	new package
+ADD	add new package
+REMOVE	remove
+REMOVE	delete
+REMOVE	stop tracking
+YES	yes
+YES	yep
+YES	afirmative
+YES	correct
+NO	no
+NO	nope
+NO	wrong
+ABORT	abort
+ABORT	cancel
+ABORT	stop
+CLEAR	delete all
+CLEAR	clear
+CLEAR	reset
+HELP	help
+ 

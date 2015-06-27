@@ -2162,7 +2162,7 @@ ENTER	in
 ENTER	go in
 OUT	out
 OUT	go out
-OUT	exit
+OUT	go back
 INVENTORY	inventory
 INVENTORY	backpack
 INVENTORY	carrying
