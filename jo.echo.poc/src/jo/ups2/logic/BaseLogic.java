@@ -1,6 +1,10 @@
 package jo.ups2.logic;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jo.echo.util.EnumerationUtils;
+import jo.echo.util.ResponseUtils;
 import jo.ups2.data.PackageBean;
 import jo.ups2.data.PackagesBean;
 
@@ -25,6 +29,8 @@ public class BaseLogic
             response = doAdd(list);
         else if (intent.getName().equals("CLEAR"))
             response = doClear(list);
+        else if (intent.getName().equals("LIST"))
+            response = doList(list);
         return response;
     }
 
@@ -46,25 +52,30 @@ public class BaseLogic
         {
             sb.append("Tracking "+UPSAppLogic.expand(pack.getTrackingID())+". ");
             TrackResponse trackResponse = pack.getInfo();
-            if (trackResponse.getShipment().size() > 1)
-                sb.append("There are "+trackResponse.getShipment().size()+" shipments. ");
-            for (int i = 0; i < trackResponse.getShipment().size(); i++)
+            if (trackResponse == null)
+                sb.append("No information yet on this package.");
+            else
             {
-                Shipment shipment = trackResponse.getShipment().get(i);
-                if (shipment.getPackage().size() > 1)
-                    sb.append("  Shipment #"+(i+1)+" has "+shipment.getPackage().size()+" packages. ");
-                for (int j = 0; j < shipment.getPackage().size(); j++)
+                if (trackResponse.getShipment().size() > 1)
+                    sb.append("There are "+trackResponse.getShipment().size()+" shipments. ");
+                for (int i = 0; i < trackResponse.getShipment().size(); i++)
                 {
-                    PackageType pkg = shipment.getPackage().get(j);
+                    Shipment shipment = trackResponse.getShipment().get(i);
                     if (shipment.getPackage().size() > 1)
-                        sb.append(" "+EnumerationUtils.ORDINAL[j+1]+" package. ");
-                    Activity activity = pkg.getActivity().get(0);
-                    sb.append(activity.getStatus().getStatusType().getDescription());
-                    sb.append(" at "+UPSAppLogic.expandTime(activity.getTime()));
-                    if (!activity.getDate().equals(lastDate))
-                        sb.append(" on "+UPSAppLogic.expandDate(activity.getDate()));
-                    lastDate = activity.getDate();
-                    sb.append(". ");
+                        sb.append("  Shipment #"+(i+1)+" has "+shipment.getPackage().size()+" packages. ");
+                    for (int j = 0; j < shipment.getPackage().size(); j++)
+                    {
+                        PackageType pkg = shipment.getPackage().get(j);
+                        if (shipment.getPackage().size() > 1)
+                            sb.append(" "+EnumerationUtils.ORDINAL[j+1]+" package. ");
+                        Activity activity = pkg.getActivity().get(0);
+                        sb.append(activity.getStatus().getStatusType().getDescription());
+                        sb.append(" at "+UPSAppLogic.expandTime(activity.getTime()));
+                        if (!activity.getDate().equals(lastDate))
+                            sb.append(" on "+UPSAppLogic.expandDate(activity.getDate()));
+                        lastDate = activity.getDate();
+                        sb.append(". ");
+                    }
                 }
             }
         }
@@ -76,6 +87,28 @@ public class BaseLogic
     {
         list.setState(PackagesBean.REMOVE0);
         return RemoveLogic.doIntent(intent, list);
+    }
+
+    private static String doList(PackagesBean list)
+    {
+        if (list.getPackages().size() == 0)
+        {
+            list.setState(PackagesBean.BASE);
+            return "You have no packages.[[reprompt=Say 'add' to add a package.]]";
+        }
+        List<String> packs = new ArrayList<String>();
+        List<String> card = new ArrayList<String>();
+        for (int i = 0; i < list.getPackages().size(); i++)
+        {
+            PackageBean pack = list.getPackages().get(i);
+            packs.add(UPSAppLogic.expand(pack.getTrackingID()));
+            card.add(pack.getTrackingID());
+        }
+        StringBuffer resp = new StringBuffer();
+        resp.append("You are tracking "+ResponseUtils.wordList(packs)+". ");
+        resp.append("[[card="+"You are tracking "+ResponseUtils.wordList(card)+"."+"]]");
+        list.setState(PackagesBean.REMOVE1);
+        return resp.toString();
     }
 
     private static String doAdd(PackagesBean list)

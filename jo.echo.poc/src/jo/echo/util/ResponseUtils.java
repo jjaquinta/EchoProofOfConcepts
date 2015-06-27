@@ -1,5 +1,6 @@
 package jo.echo.util;
 
+import java.util.Collection;
 import java.util.Properties;
 
 import com.amazon.speech.speechlet.SpeechletResponse;
@@ -78,6 +79,11 @@ public class ResponseUtils
                 props.put(kv.substring(0, o).trim(), kv.substring(o + 1).trim());
         }
         return output;
+    }
+    
+    public static String wordList(Collection<String> words)
+    {
+        return wordList(words.toArray(new String[0]), -1);
     }
     
     public static String wordList(String[] words, int limit)

@@ -1,4 +1,21 @@
-NUMBERS	{one|firstDigit} {z|secondDigit} {one|thirdDigit}
+NUMBERS	{one|firstDigit} {zulu|secondDigit} {zero|thirdDigit}
+NUMBERS	{zero|firstDigit} {nine|secondDigit} {four|thirdDigit}
+NUMBERS	{one|firstDigit} {one|secondDigit} {alpha|thirdDigit}
+NUMBERS	{eight|firstDigit} {six|secondDigit} {three|thirdDigit}
+NUMBERS	{eight|firstDigit} {one|secondDigit} {five|thirdDigit}
+NUMBERS	{five|firstDigit} {two|secondDigit} {three|thirdDigit}
+NUMBERS	{one|firstDigit} {zulu|secondDigit} {echo|thirdDigit}
+NUMBERS	{three|firstDigit} {three|secondDigit} {four|thirdDigit}
+NUMBERS	{waldo|firstDigit} {two|secondDigit} {three|thirdDigit}
+NUMBERS	{nine|firstDigit} {four|secondDigit} {zero|thirdDigit}
+NUMBERS	{zero|firstDigit} {six|secondDigit} {two|thirdDigit}
+NUMBERS	{nine|firstDigit} {one|secondDigit} {one|thirdDigit}
+NUMBERS	{one|firstDigit} {zulu|secondDigit} {one|thirdDigit}
+NUMBERS	{two|firstDigit} {three|secondDigit} {four|thirdDigit}
+NUMBERS	{five|firstDigit} {echo|secondDigit} {zero|thirdDigit}
+NUMBERS	{two|firstDigit} {nine|secondDigit} {one|thirdDigit}
+NUMBERS	{nine|firstDigit} {eight|secondDigit} {zero|thirdDigit}
+NUMBERS	{seven|firstDigit} {nine|secondDigit} {three|thirdDigit}
 NUMBER	{one|firstDigit}
 NUMBER	{two|firstDigit}
 NUMBER	{three|firstDigit}
@@ -35,4 +52,6 @@ CLEAR	delete all
 CLEAR	clear
 CLEAR	reset
 HELP	help
+LIST	list
+LIST	what am i tracking
  

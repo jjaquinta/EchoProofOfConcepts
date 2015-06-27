@@ -69,15 +69,10 @@ public class BaseServlet extends SpeechletServlet
         {
             super.doPost(arg0, arg1);
         }
-        catch (ServletException e1)
+        catch (Exception e1)
         {
-            mLastException = e1;
+            log(this.getClass(), e1);
             throw e1;
-        }
-        catch (IOException e2)
-        {
-            mLastException = e2;
-            throw e2;
         }
     }
     
@@ -133,6 +128,16 @@ public class BaseServlet extends SpeechletServlet
         is.close();
     }
     
+    public static void log(Class<?> wrt, Throwable t)
+    {
+        for (Throwable e = t; e != null; e = e.getCause())
+        {
+            log(wrt, e.toString());
+            for (StackTraceElement ele : e.getStackTrace())
+                log(wrt, "  "+ele.toString());
+        }
+    }
+    
     public static void log(Class<?> wrt, String msg)
     {
         StringBuffer log = mLogMessages.get(wrt);
@@ -175,18 +180,27 @@ public class BaseServlet extends SpeechletServlet
         @Override
         public SpeechletResponse onIntent(final IntentRequest request, final Session session)
                 throws SpeechletException {
-            log(mServlet, "onIntent requestId="+request.getRequestId()+", sessionId="+session.getSessionId());
-            if (request.getIntent() != null)
+            try
             {
-                StringBuffer sb = new StringBuffer();
-                sb.append(request.getIntent().getName()+":");
-                for (Slot s : request.getIntent().getSlots().values())
-                    sb.append(" "+s.getName()+"="+s.getValue());
-                log(mServlet, sb.toString());
+                log(mServlet, "onIntent requestId="+request.getRequestId()+", sessionId="+session.getSessionId());
+                if (request.getIntent() != null)
+                {
+                    StringBuffer sb = new StringBuffer();
+                    sb.append(request.getIntent().getName()+":");
+                    for (Slot s : request.getIntent().getSlots().values())
+                        sb.append(" "+s.getName()+"="+s.getValue());
+                    log(mServlet, sb.toString());
+                }
+                SpeechletResponse response = mBase.onIntent(request, session);
+                log(mServlet, "onIntent returning");
+                logResponse(response);
+                return response;
             }
-            SpeechletResponse response = mBase.onIntent(request, session);
-            logResponse(response);
-            return response;
+            catch (Throwable t)
+            {
+                log(mServlet, t);
+                throw t;
+            }
         }
 
         @Override

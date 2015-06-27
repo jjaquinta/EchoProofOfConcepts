@@ -153,16 +153,26 @@ public class UserLogic
     }
 
     @SuppressWarnings("unchecked")
-    public static String buy(JSONObject user, DockCargoBean lot)
+    public static String buy(JSONObject user, DockCargoBean lot, boolean verbose)
     {
         long money = getMoney(user);
         int space = getHoldSpace(user);
         long price = OnDockLogic.getPurchasePrice(lot);
         int size = OnDockLogic.getSize(lot);
         if (price > money)
-            return OnDockLogic.getName(lot)+" costs "+price+" talents but you only have "+money+". ";
+        {
+            if (verbose)
+                return OnDockLogic.getName(lot)+" costs "+price+" talents but you only have "+money+". ";
+            else
+                return null;
+        }
         if (size > space)
-            return OnDockLogic.getName(lot)+" takes up "+size+" tons of space, but you only have "+space+". ";
+        {
+            if (verbose)
+                return OnDockLogic.getName(lot)+" takes up "+size+" tons of space, but you only have "+space+". ";
+            else
+                return null;
+        }
         money -= price;
         space -= size;
         JSONArray hold = (JSONArray)user.get("hold");
@@ -170,9 +180,18 @@ public class UserLogic
         setMoney(user, money);
         setHoldSpace(user, space);
         setUser(user);
-        return "You bought "+size+" tons of "+OnDockLogic.getName(lot)+" for "+price+" talents. ";
+        if (verbose)
+            return "You bought "+size+" tons of "+OnDockLogic.getName(lot)+" for "+price+" talents. ";
+        else
+            return size+" tons of "+OnDockLogic.getName(lot)+" for "+price;
     }
 
+    public static boolean isAnythingInHold(JSONObject user)
+    {
+        JSONArray jhold = (JSONArray)user.get("hold");
+        return ((jhold != null) && (jhold.size() >  0));
+    }
+    
     public static List<DockCargoBean> getInHold(JSONObject user)
     {
         String location = getLocation(user);
@@ -222,5 +241,20 @@ public class UserLogic
         setHoldSpace(user, space);
         setUser(user);
         return "You sold "+size+" tons of "+OnDockLogic.getName(lot)+" for "+price+" talents. ";
+    }
+
+    public static void updateLastAccess(JSONObject user)
+    {
+        user.put("lastAccess", System.currentTimeMillis());
+        setUser(user);
+    }
+
+    public static long getLastAccess(JSONObject user)
+    {
+        Long la = (Long)user.get("lastAccess");
+        if (la == null)
+            return 0;
+        else
+            return la;
     }
 }

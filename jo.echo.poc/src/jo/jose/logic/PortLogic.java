@@ -79,7 +79,7 @@ public class PortLogic
         return "diverse resources";
     }
 
-    public static String distanceDescription(PortBean p1, PortBean p2)
+    public static String distanceDescription(PortBean p1, PortBean p2, boolean verbose)
     {
         double x1 = p1.getX();
         double y1 = p1.getY();
@@ -89,7 +89,7 @@ public class PortLogic
         double z2 = p2.getZ();
         double d = Math.sqrt((x1 - x2)*(x1 - x2) + (y1 - y2)*(y1 - y2) + (z1 - z2)*(z1 - z2));
         d /= 3.26;
-        String num = String.format("%.1f parsecs", d);
+        String num = String.format(verbose ? "%.1f parsecs" : "%.1f", d);
         return num;
     }
 

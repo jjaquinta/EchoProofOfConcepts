@@ -15,7 +15,7 @@
 	</servlet>
 	<servlet>
 	  <servlet-name>UPSServlet</servlet-name>
-	  <servlet-class>jo.ups.UPSServlet</servlet-class>
+	  <servlet-class>jo.ups2.UPS2Servlet</servlet-class>
 	</servlet>
 	<servlet>
 	  <servlet-name>JoseServlet</servlet-name>

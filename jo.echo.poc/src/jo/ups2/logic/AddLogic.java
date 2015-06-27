@@ -186,6 +186,8 @@ public class AddLogic
                 tn.append("0");
             else if ("owe".equalsIgnoreCase(v))
                 tn.append("0");
+            else if ("zero".equalsIgnoreCase(v))
+                tn.append("0");
             else
                 tn.append(v.charAt(0));
         }

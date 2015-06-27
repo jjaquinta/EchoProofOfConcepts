@@ -81,7 +81,7 @@ public class EnumerationUtils
     {
         for (int i = 0; i < ORDINAL.length; i++)
             if (ORDINAL[i].equalsIgnoreCase(txt))
-                return i - 1;
+                return i + 1;
         return null;
     }
     
@@ -89,7 +89,7 @@ public class EnumerationUtils
     {
         for (int i = 0; i < CARDINAL.length; i++)
             if (CARDINAL[i].equalsIgnoreCase(txt))
-                return i - 1;
+                return i + 1;
         return null;
     }
     

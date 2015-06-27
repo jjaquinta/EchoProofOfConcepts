@@ -1,7 +1,10 @@
 package jo.jose.logic;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import jo.d4w.web.data.DockCargoBean;
 import jo.d4w.web.data.OnDockBean;
@@ -25,10 +28,15 @@ public class JoseAppLogic
         try
         {
             JSONObject user = getUser(session);
+            String resp;
             if (request instanceof IntentRequest)
-                return doIntent(request, user);
+                resp = doIntent(request, user);
             else
-                return doWelcome(request, user);
+                resp = doWelcome(request, user);
+            if (resp.indexOf("[[title") < 0)
+                resp += "[[title=Jos\u00e9 Fabuloso]]";
+            UserLogic.updateLastAccess(user);
+            return ResponseUtils.buildSpeechletResponse(resp);
         }
         catch (IOException e)
         {
@@ -36,13 +44,25 @@ public class JoseAppLogic
             return ResponseUtils.buildSpeechletResponse("Something went wrong. "+e.getLocalizedMessage());
         }
     }
-    private static SpeechletResponse doWelcome(SpeechletRequest request, JSONObject user)
+    private static String doWelcome(SpeechletRequest request, JSONObject user)
     {
-        return ResponseUtils.buildSpeechletResponse("Welcome to Jos\u00e9 Fabuloso. "
-                + "You've read the book, now play the game! "
-                + "You are currently at "+UserLogic.getLocationName(user)+", and have "+UserLogic.getHoldSpace(user)+" tons of space free in your hold.");
+        long lastAccess = UserLogic.getLastAccess(user);
+        String resp = "Welcome to Jos\u00e9 Fabuloso. ";
+        if (System.currentTimeMillis() - lastAccess > 30000L)
+        {
+            resp += "You've read the book, now play the game! ";
+            resp += "You are currently at "+UserLogic.getLocationName(user)+". ";
+            if (UserLogic.isAnythingInHold(user))
+                resp += "You have "+UserLogic.getHoldSpace(user)+" tons of space free in your hold.";
+        }
+        resp += "[[reprompt=";
+        if (UserLogic.isAnythingInHold(user))
+            resp += "Say 'hold' to see what is in your hold. ";
+        resp += "Say 'dock' to see what is for sale. ";
+        resp += "]]";
+        return resp;
     }
-    private static SpeechletResponse doIntent(SpeechletRequest request, JSONObject user) throws IOException
+    private static String doIntent(SpeechletRequest request, JSONObject user) throws IOException
     {
         Intent intent = ((IntentRequest)request).getIntent();
         String response = "I'm not quite sure what you want.";
@@ -80,7 +100,7 @@ public class JoseAppLogic
             else if (verb.equals("JOSE"))
                 response = BookLogic.doJose(intent, user);
         }
-        return ResponseUtils.buildSpeechletResponse("[[title=Jos\u00e9 Fabuloso]]"+response);
+        return response;
     }
     private static String doReset(Intent intent, JSONObject user) throws IOException
     {
@@ -112,15 +132,20 @@ public class JoseAppLogic
         PortBean at = PortsLogic.findPort(ports, atName);
         StringBuffer sb = new StringBuffer();
         PortBean sample = null;
-        for (PortBean port : PortsLogic.getPorts(ports))
+        List<String> nearby = new ArrayList<String>();
+        for (int i = 0; i < PortsLogic.getPorts(ports).size(); i++)
         {
+            PortBean port = PortsLogic.getPorts(ports).get(i);
             String pName = PortLogic.getName(port);
             if (pName.equals(atName))
                 continue;
             sample = port;
-            String dist = PortLogic.distanceDescription(port, at);
-            sb.append(pName+" is "+dist+" away. ");
+            if (i == 0)
+                nearby.add(pName+" is "+PortLogic.distanceDescription(port, at, true)+" away");
+            else
+                nearby.add(pName+" is "+PortLogic.distanceDescription(port, at, false));
         }
+        sb.append(ResponseUtils.wordList(nearby.toArray(new String[0]), -1));
         sb.append("[[reprompt=To travel to "+PortLogic.getName(sample)+", for example, say 'go to "+PortLogic.getName(sample)+"'.]]");
         return sb.toString();
     }
@@ -194,16 +219,26 @@ public class JoseAppLogic
                     + "[[reprompt=Say 'buy' and the lot number or name to purcase a lot.]]";
         else if ("everything".equals(slot.getValue()) || "all".equals(slot.getValue()))
         {
+            List<String> bought = new ArrayList<String>();
+            for (int i = 0; i < ondock.getCargo().size(); i++)
+            {
+                DockCargoBean lot = ondock.getCargo().get(i);
+                String msg = UserLogic.buy(user, lot, i == 0);
+                if (msg != null)
+                    bought.add(msg);
+            }
             StringBuffer msg = new StringBuffer();
-            for (DockCargoBean lot : ondock.getCargo())
-                msg.append(UserLogic.buy(user, lot));
+            if (bought.size() == 0)
+                msg.append("You didn't buy anything. ");
+            else
+                msg.append(ResponseUtils.wordList(bought));
             return msg.toString();
         }
         DockCargoBean lot = resolveLot(intent, user, ondock);
         if (lot == null)
             return "I'm not quite sure which lot you mean."
                     + "[[reprompt=Say 'dock' to see everything for sale.]]";
-        return UserLogic.buy(user, lot);
+        return UserLogic.buy(user, lot, true);
     }    
     private static String doHold(Intent intent, JSONObject user) throws IOException
     {
@@ -269,14 +304,29 @@ public class JoseAppLogic
     
     private static String listLots(List<DockCargoBean> lots)
     {
-        StringBuffer sb = new StringBuffer();
-        for (DockCargoBean lot : lots)
+        List<String> theLots = new ArrayList<String>();
+        Set<String> done = new HashSet<String>();
+        for (int i = 0; i < lots.size(); i++)
         {
+            DockCargoBean lot = lots.get(i);
             String name = OnDockLogic.getName(lot);
             int size = OnDockLogic.getSize(lot);
             long price = OnDockLogic.getPurchasePrice(lot);
-            sb.append(size+" tons of "+name+" for "+price+" talents. ");
+            if (done.contains(name))
+                continue;
+            if (i == 0)
+                theLots.add(size+" tons of "+name+" for "+price+" talents");
+            else
+                theLots.add(size+" tons of "+name+" for "+price+"");
+            done.add(name);
         }
+        StringBuffer sb = new StringBuffer("Available for sale ");
+        if (theLots.size() == 1)
+            sb.append("is ");
+        else
+            sb.append("are ");
+        sb.append(ResponseUtils.wordList(theLots.toArray(new String[0]), -1));
+        sb.append(" .");
         return sb.toString();
     }
     private static DockCargoBean resolveLot(Intent intent, JSONObject user, OnDockBean ondock)

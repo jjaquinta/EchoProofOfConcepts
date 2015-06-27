@@ -30,6 +30,7 @@ public class PackagesBean
     private int     mState;
     private String  mCurrentNumber;
     private int     mDeleteRequest;
+    private long    mLastLogin;
     
     public PackagesBean()
     {
@@ -145,6 +146,16 @@ public class PackagesBean
     public void setDeleteRequest(int deleteRequest)
     {
         mDeleteRequest = deleteRequest;
+    }
+
+    public long getLastLogin()
+    {
+        return mLastLogin;
+    }
+
+    public void setLastLogin(long lastLogin)
+    {
+        mLastLogin = lastLogin;
     }
 
 }

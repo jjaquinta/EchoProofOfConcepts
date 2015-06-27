@@ -16,7 +16,7 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 import jo.echo.util.BaseServlet;
-import jo.ups.UPSServlet;
+import jo.ups2.UPS2Servlet;
 
 import com.ups.xolt.codesamples.accessrequest.jaxb.AccessRequest;
 import com.ups.xolt.codesamples.request.jaxb.Request;
@@ -38,8 +38,9 @@ public class UPSTrackLogic
         try{
             mProps.load(UPSTrackLogic.class.getClassLoader().getResourceAsStream("com/ups/xolt/codesamples/ups.properties"));
         }catch (Exception e) {
+            BaseServlet.log(UPS2Servlet.class, e);
             e.printStackTrace();
-        }   
+        } 
     }
     
 
@@ -47,8 +48,8 @@ public class UPSTrackLogic
         trackingNumber = trackingNumber.toUpperCase();
         StringWriter strWriter = null;
         try {       
-            BaseServlet.log(UPSServlet.class, "**********************************************");
-            BaseServlet.log(UPSServlet.class, "Looking up '"+trackingNumber+"'");
+            BaseServlet.log(UPS2Servlet.class, "**********************************************");
+            BaseServlet.log(UPS2Servlet.class, "Looking up '"+trackingNumber+"'");
             //Create JAXBContext and marshaller for AccessRequest object                    
             JAXBContext accessRequestJAXBC = JAXBContext.newInstance(AccessRequest.class.getPackage().getName() );              
             Marshaller accessRequestMarshaller = accessRequestJAXBC.createMarshaller();
@@ -69,10 +70,10 @@ public class UPSTrackLogic
             trackRequestMarshaller.marshal(trackRequest, strWriter);
             strWriter.flush();
             strWriter.close();
-            BaseServlet.log(UPSServlet.class, "Request: " + strWriter.getBuffer().toString());
+            BaseServlet.log(UPS2Servlet.class, "Request: " + strWriter.getBuffer().toString());
             
             String strResults =contactService(strWriter.getBuffer().toString());
-            BaseServlet.log(UPSServlet.class, "Results: " + strResults);
+            BaseServlet.log(UPS2Servlet.class, "Results: " + strResults);
             
             //Parse response object
             JAXBContext trackResponseJAXBC = JAXBContext.newInstance(TrackResponse.class.getPackage().getName());
@@ -80,10 +81,15 @@ public class UPSTrackLogic
             ByteArrayInputStream input = new ByteArrayInputStream(strResults.getBytes());
             Object objResponse = trackUnmarshaller.unmarshal(input);
             TrackResponse trackResponse = (TrackResponse)objResponse;
-            BaseServlet.log(UPSServlet.class, trackResponse.getResponse().getResponseStatusDescription());
+            BaseServlet.log(UPS2Servlet.class, trackResponse.getResponse().getResponseStatusDescription());
             return trackResponse;           
         } catch (Exception e) {
-            BaseServlet.log(UPSServlet.class, e.getMessage());
+            for (Throwable ex = e; ex != null; ex = ex.getCause())
+            {
+            BaseServlet.log(UPS2Servlet.class, ex.getMessage());
+            for (StackTraceElement ele : ex.getStackTrace())
+                BaseServlet.log(UPS2Servlet.class, "  "+ele.toString());
+            }
             e.printStackTrace();
             return null;
         } finally{
@@ -106,7 +112,7 @@ public class UPSTrackLogic
             URL url = new URL(mProps.getProperty(ENDPOINT_URL));
             
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            BaseServlet.log(UPSServlet.class, "Client established connection with " + url.toString());
+            BaseServlet.log(UPS2Servlet.class, "Client established connection with " + url.toString());
             // Setup HTTP POST parameters
             connection.setDoOutput(true);
             connection.setDoInput(true);
@@ -116,12 +122,12 @@ public class UPSTrackLogic
             outputStream.write(xmlInputString.getBytes());
             outputStream.flush();
             outputStream.close();
-            BaseServlet.log(UPSServlet.class, "Http status = " + connection.getResponseCode() + " " + connection.getResponseMessage());
+            BaseServlet.log(UPS2Servlet.class, "Http status = " + connection.getResponseCode() + " " + connection.getResponseMessage());
             
             outputStr = readURLConnection(connection);      
             connection.disconnect();
         } catch (Exception e) {
-            BaseServlet.log(UPSServlet.class, "Error sending data to server");
+            BaseServlet.log(UPS2Servlet.class, "Error sending data to server");
             e.printStackTrace();
             throw e;
         } finally {                     
@@ -149,7 +155,7 @@ public class UPSTrackLogic
             }
             reader.close();
         } catch (Exception e) {
-            BaseServlet.log(UPSServlet.class, "Could not read from URL: " + e.toString());
+            BaseServlet.log(UPS2Servlet.class, "Could not read from URL: " + e.toString());
             throw e;
         } finally {
             if(reader != null){
@@ -188,7 +194,7 @@ public class UPSTrackLogic
     public static void main(String[] argv)
     {
         TrackResponse trackResponse = lookup("1Z12345E0291980793");
-        BaseServlet.log(UPSServlet.class, "Response Status: " + trackResponse.getResponse().getResponseStatusCode());
+        BaseServlet.log(UPS2Servlet.class, "Response Status: " + trackResponse.getResponse().getResponseStatusCode());
         System.out.println("Response Status Description: " + trackResponse.getResponse().getResponseStatusDescription());
         System.out.println(trackResponse.getShipment().size()+" shipments");
         for (int i = 0; i < trackResponse.getShipment().size(); i++)

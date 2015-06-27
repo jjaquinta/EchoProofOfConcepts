@@ -23,13 +23,29 @@ public class UPSAppLogic
         else
             response = doWelcome(request, list);
         response += "[[title=Package Tracker]]";
+        list.setLastLogin(System.currentTimeMillis());
         return ResponseUtils.buildSpeechletResponse(response);
     }
     private static String doWelcome(SpeechletRequest request, PackagesBean list)
     {
         list.setState(0);
-        return "Welcome to Package Tracker. "
-                + "You can use this to track the progress of your UPS shipments. You can start by saying \"show packages\".";
+        StringBuffer resp = new StringBuffer("Welcome to Package Tracker. ");
+        if (System.currentTimeMillis() - list.getLastLogin() > 30000L)
+        {
+              resp.append("You can use this to track the progress of your UPS shipments. ");
+              if (list.getPackages().size() > 0)
+              {
+                  resp.append("You can start by saying \"status\".");
+                  resp.append("[[reprompt=Say \"status\" to find the state of your packages.]]");
+              }
+              else
+              {
+                  resp.append("You can start by saying \"add\" to add a new package.");
+                  resp.append("[[reprompt=Say \"add\" to add a new package.]]");
+              }
+              
+        }
+        return resp.toString();
     }
     private static String doIntent(SpeechletRequest request, PackagesBean list)
     {
