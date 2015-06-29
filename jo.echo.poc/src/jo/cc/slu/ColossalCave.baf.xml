@@ -48,22 +48,22 @@
 <intent>EAST	go east</intent>
 <intent>WEST	west</intent>
 <intent>WEST	go west</intent>
-<intent>NORTH WEST	north west</intent>
-<intent>NORTH WEST	go north west</intent>
-<intent>NORTH WEST	northwest</intent>
-<intent>NORTH WEST	go northwest</intent>
-<intent>SOUTH WEST	south west</intent>
-<intent>SOUTH WEST	go south west</intent>
-<intent>SOUTH WEST	southwest</intent>
-<intent>SOUTH WEST	go southwest</intent>
-<intent>NORTH EAST	north east</intent>
-<intent>NORTH EAST	go north east</intent>
-<intent>NORTH EAST	northeast</intent>
-<intent>NORTH EAST	go northeast</intent>
-<intent>SOUTH EAST	south east</intent>
-<intent>SOUTH EAST	go south east</intent>
-<intent>SOUTH EAST	southeast</intent>
-<intent>SOUTH EAST	go southeast</intent>
+<intent>NORTHWEST	north west</intent>
+<intent>NORTHWEST	go north west</intent>
+<intent>NORTHWEST	northwest</intent>
+<intent>NORTHWEST	go northwest</intent>
+<intent>SOUTHWEST	south west</intent>
+<intent>SOUTHWEST	go south west</intent>
+<intent>SOUTHWEST	southwest</intent>
+<intent>SOUTHWEST	go southwest</intent>
+<intent>NORTHEAST	north east</intent>
+<intent>NORTHEAST	go north east</intent>
+<intent>NORTHEAST	northeast</intent>
+<intent>NORTHEAST	go northeast</intent>
+<intent>SOUTHEAST	south east</intent>
+<intent>SOUTHEAST	go south east</intent>
+<intent>SOUTHEAST	southeast</intent>
+<intent>SOUTHEAST	go southeast</intent>
 <intent>UP	up</intent>
 <intent>UP	go up</intent>
 <intent>DOWN	down</intent>

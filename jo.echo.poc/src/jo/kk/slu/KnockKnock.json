@@ -1,0 +1,15 @@
+{
+  "intents": [
+    {
+      "slots": [{
+          "name": "anything",
+          "type": "LITERAL"
+        }],
+      "intent": "RESPONSE"
+    },
+    {
+      "slots": [],
+      "intent": "QUIT"
+    }
+ ]
+}

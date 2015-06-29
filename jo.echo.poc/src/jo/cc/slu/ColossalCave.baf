@@ -6,22 +6,22 @@ EAST	east
 EAST	go east
 WEST	west
 WEST	go west
-NORTH WEST	north west
-NORTH WEST	go north west
-NORTH WEST	northwest
-NORTH WEST	go northwest
-SOUTH WEST	south west
-SOUTH WEST	go south west
-SOUTH WEST	southwest
-SOUTH WEST	go southwest
-NORTH EAST	north east
-NORTH EAST	go north east
-NORTH EAST	northeast
-NORTH EAST	go northeast
-SOUTH EAST	south east
-SOUTH EAST	go south east
-SOUTH EAST	southeast
-SOUTH EAST	go southeast
+NORTHWEST	north west
+NORTHWEST	go north west
+NORTHWEST	northwest
+NORTHWEST	go northwest
+SOUTHWEST	south west
+SOUTHWEST	go south west
+SOUTHWEST	southwest
+SOUTHWEST	go southwest
+NORTHEAST	north east
+NORTHEAST	go north east
+NORTHEAST	northeast
+NORTHEAST	go northeast
+SOUTHEAST	south east
+SOUTHEAST	go south east
+SOUTHEAST	southeast
+SOUTHEAST	go southeast
 UP	up
 UP	go up
 DOWN	down
@@ -2162,7 +2162,7 @@ ENTER	in
 ENTER	go in
 OUT	out
 OUT	go out
-OUT	go back
+OUT	exit
 INVENTORY	inventory
 INVENTORY	backpack
 INVENTORY	carrying
