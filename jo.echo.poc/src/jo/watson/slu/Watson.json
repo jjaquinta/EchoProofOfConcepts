@@ -1,0 +1,35 @@
+{
+  "intents": [
+    {
+      "slots": [
+      { "name": "question", "type": "LITERAL" }
+        ],
+      "intent": "ASK"
+    },
+    {
+      "slots": [
+        ],
+      "intent": "YES"
+    },
+    {
+      "slots": [
+        ],
+      "intent": "NO"
+    },
+    {
+      "slots": [
+        ],
+      "intent": "ALWAYS"
+    },
+    {
+      "slots": [
+        ],
+      "intent": "NEVER"
+    },
+    {
+      "slots": [
+        ],
+      "intent": "SETTINGS"
+    }
+ ]
+}

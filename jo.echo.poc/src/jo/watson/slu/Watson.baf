@@ -1,0 +1,7 @@
+ASK	{Can I drink alcohol while breastfeeding|question}
+YES	yes
+NO	no
+ALWAYS	always
+NEVER	never
+SETTINGS	settings
+SETTINGS	options
