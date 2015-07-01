@@ -11,6 +11,7 @@ import javax.net.ssl.HttpsURLConnection;
 import jo.echo.util.BaseServlet;
 import jo.watson.WatsonServlet;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -43,6 +44,8 @@ public class BlueMixLogic
             try
             {
                 jobj = mParser.parse(new InputStreamReader(ins, "utf-8"));
+                if (jobj instanceof JSONArray)
+                    BaseServlet.log(WatsonServlet.class, "Receiving: "+((JSONArray)jobj).toJSONString());
             }
             catch (ParseException e)
             {

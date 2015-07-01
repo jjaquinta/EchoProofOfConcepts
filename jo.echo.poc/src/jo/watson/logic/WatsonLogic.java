@@ -5,6 +5,7 @@ import java.util.Properties;
 import jo.echo.util.BaseServlet;
 import jo.ups2.UPS2Servlet;
 import jo.watson.WatsonServlet;
+import jo.watson.data.WatsonAnswerBean;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -27,7 +28,7 @@ public class WatsonLogic
         } 
     }
     
-    public static Object ask(String question, String dataset)
+    public static WatsonAnswerBean ask(String question, String dataset)
     {
         //create the { 'question' : {
         //  'questionText:'...',
@@ -35,6 +36,10 @@ public class WatsonLogic
         JSONObject questionJson = new JSONObject();
         questionJson.put("questionText",question);
         questionJson.put("items",1);
+        //JSONObject evidenceRequest = new JSONObject();
+        //questionJson.put("evidenceRequest", evidenceRequest);
+        //evidenceRequest.put("items", 3);
+        //evidenceRequest.put("profile", "yes");
 
         JSONObject postData = new JSONObject();
         postData.put("question",questionJson);
@@ -51,18 +56,19 @@ public class WatsonLogic
             if (answers.size() > 0) 
             {
                 JSONObject answer = (JSONObject) answers.get(0);
-                String text = (String)answer.get("text");
+                WatsonAnswerBean a = new WatsonAnswerBean();
+                a.setAnswer((String)answer.get("text"));
                 double p = Double.parseDouble((String)answer.get("value"));
                 p = Math.floor(p * 100);
-                text += "(confidence "+Double.toString(p) + "%)";
-                return text;
+                a.setConfidence(p);
+                return a;
             }
         } catch (Exception e) {
             BaseServlet.log(WatsonServlet.class, e);
-            return "I got an error while trying to find that out "+e;
+            return null;
         }
 
-        return "I don't know the answer to that with any confidence.";
+        return null;
     }
 
 }
