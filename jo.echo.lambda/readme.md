@@ -14,7 +14,7 @@ Click “Next” to get to the Java Settings page. Select the “src” folder a
 
 (We do this to make it easier to export our Lambda function as a zip file. If Amazon have fixed their “Upload function to AWS Lambda” function, then you probably don't need to do all this.)
 
-Once created, make a folder called “lib” in the root of your project. As per step 4 & 5 from Using The Alexa Skills Kit Samples – Java, section Creating the AWS Java Web Project and Importing the Code (https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/using-the-alexa-skills-kit-samples-java#creating-the-aws-java-web-project-and-importing-the-code) you need to copy these files into the lib directory from the AlexSkillsKit:
+Once created, make a folder called “lib” in the root of your project. As per step 4 & 5 from Using The Alexa Skills Kit Samples – Java, section [Creating the AWS Java Web Project and Importing the Code](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/using-the-alexa-skills-kit-samples-java#creating-the-aws-java-web-project-and-importing-the-code). You need to copy these files into the lib directory from the AlexSkillsKit:
 * commons-codec-1.6.jar
 * commons-lang3-3.x.jar
 * jackson-annotations-2.3.2.jar
@@ -34,6 +34,7 @@ From the jo.echo.lambda sample project on [GitHub](https://github.com/jjaquinta/
 You can now create your handler and speechlet for your application. As a short cut, you can copy in the helloworld example from the Alexa Skills Kit. If you do, rename HelloWorldServlet to HelloWorldLambda. Then change it from inheriting from SpeechletServlet to SpeechletLambda.
 
 There seems to be a bit of oddness in how the class of a Lambda function is instantiated. I have found that the constructor on it is not called if the handler method is not on the class. To get around this, you need to override the handler method on your skill's class. This can just simple call the super class method. Just inserting this code should work fine:
+
     @Override
     public void handleRequest(InputStream inputStream,
             OutputStream outputStream, Context context) throws IOException
@@ -50,8 +51,10 @@ Troubleshooting.
 If, when you test, you get a “Class not found” message, it's probably because there is a missing library. Check your ZIP file and make sure the “lib” directory is in the root of the ZIP file and that it contains all the jar files your skill needs.
 
 If your test runs, but only returns back a JSON block like this:
+
     {
       "version": "1.0",
       "sessionAttributes": {}
     }
+
 with a “java.lang.NullPointerException” reported in “SpeechletLambda.java:118” listed in the execution log, you probably forgot to override the handler class.
