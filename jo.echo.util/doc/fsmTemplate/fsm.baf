@@ -1,0 +1,24 @@
+NORTH	north
+SOUTH	south
+EAST	east
+WEST	west
+NORTHWEST	northwest
+NORTHWEST	north west
+NORTHEAST	northeast
+NORTHEAST	north east
+SOUTHWEST	southwest
+SOUTHWEST	south west
+SOUTHEAST	southeast
+SOUTHEAST	south east
+NORTH	go north
+SOUTH	go south
+EAST	go east
+WEST	go west
+NORTHWEST	go northwest
+NORTHWEST	go north west
+NORTHEAST	go northeast
+NORTHEAST	go north east
+SOUTHWEST	go southwest
+SOUTHWEST	go south west
+SOUTHEAST	go southeast
+SOUTHEAST	go south east

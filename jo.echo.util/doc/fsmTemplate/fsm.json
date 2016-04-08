@@ -1,0 +1,58 @@
+{
+   "intents":[
+      {
+         "slots":[
+
+         ],
+         "intent":"NORTH"
+      },
+      {
+         "slots":[
+
+         ],
+         "intent":"SOUTH"
+      },
+      {
+         "slots":[
+
+         ],
+         "intent":"EAST"
+      },
+      {
+         "slots":[
+
+         ],
+         "intent":"WEST"
+      },
+      {
+         "slots":[
+
+         ],
+         "intent":"NORTHEAST"
+      },
+      {
+         "slots":[
+
+         ],
+         "intent":"NORTHWEST"
+      },
+      {
+         "slots":[
+
+         ],
+         "intent":"SOUTHEAST"
+      },
+      {
+         "slots":[
+
+         ],
+         "intent":"SOUTHWEST"
+      },
+      {
+         "slots":[
+
+         ],
+         "intent":"AMAZON.HelpIntent"
+      }
+   ]
+}
